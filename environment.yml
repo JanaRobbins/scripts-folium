@@ -10,7 +10,7 @@ dependencies:
   - rasterio
   - pyepsg
   - folium
-  - ipwidgets
+  - ipywidgets
   - geopy
   - numpy
-  - panda
+  - pandas
