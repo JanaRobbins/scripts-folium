@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca8f7d14-713a-4f04-b1d6-3ca614aaaaa2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scripts-folium.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scripts-folium.iml" afterDir="false" />
+    <list default="true" id="ca8f7d14-713a-4f04-b1d6-3ca614aaaaa2" name="Changes" comment="creating the map with centre in the Mourne">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mourne_walk.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mourne_walk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walk.html" beforeDir="false" afterPath="$PROJECT_DIR$/walk.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +74,18 @@
       <option name="presentableId" value="Default" />
       <updated>1681334133096</updated>
     </task>
+    <task id="LOCAL-00001" summary="creating the map with centre in the Mourne">
+      <created>1681600626395</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681600626395</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="creating the map with centre in the Mourne" />
+    <option name="LAST_COMMIT_MESSAGE" value="creating the map with centre in the Mourne" />
   </component>
 </project>
