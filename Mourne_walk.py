@@ -1,4 +1,7 @@
 import folium
+from folium import plugins
+import geopandas as gpd
+
 
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
 #the latitude is first the longitude is the second
@@ -6,7 +9,7 @@ import folium
 # default tiles are OpenStreetMap, but you can use Stamen Terrain, Stamen Toner, Stamen Watercolor, cartodbpositron, cartodbdark_matter, Mapbox Bright (needs api key), Mapbox Control Room (needs api key), Cloudmade (api key needed)
 #control_scale shows the scale on the map,
 
-map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%', position='relative', zoom_start=14, zoom_control=True, tiles="Stamen Terrain")
+map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%', zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
 
 #adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name
 
@@ -20,6 +23,7 @@ folium.Marker (location=[54.190175, -5.974230], popup="Hares' Gap", icon=folium.
 folium.Marker (location=[54.209130, -5.999262], popup="FINISH - Meelmore Lodge", icon=folium.Icon(color="purple", icon_color="black", icon="cloud"),).add_to(map)
 
 #adding PolyLine to the project in this example adding one trail to the map, add the name of the line = tooltip
+# color=purple (color for the line), opacity of the line is 3
 trail_coordinates = [
     (54.174232, -5.873921),
     (54.170992, -5.912109),
@@ -29,10 +33,27 @@ trail_coordinates = [
     (54.190175, -5.974230),
     (54.209130, -5.999262),
 ]
-folium.PolyLine(trail_coordinates, tooltip="Bandy Pad charity walk 12 km").add_to(map)
+folium.PolyLine(trail_coordinates, color='purple', weight=5, opacity=1, tooltip="Bandy Pad charity walk 12 km").add_to(map)
 
 #Latitude/longitude popovers - this can help users to find a location
 map.add_child(folium.LatLngPopup())
+
+# remove the next # if you want to see the line for the walk animated
+# plugins.AntPath(trail_coordinates).add_to(map)
+
+# add different types of the tiles as a base map
+
+folium.raster_layers.TileLayer('Open Street Map', name='Open Street Map').add_to(map)
+folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
+folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
+
+
+#folium.GeoJson(open('wall.geojson')).add_to(map)
+# add layer control to show different maps
+
+folium.LayerControl().add_to(map)
+
+
 
 #this will save your map - you can open this map at any time and see the changes
 map.save("walk.html")
