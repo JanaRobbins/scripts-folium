@@ -3,6 +3,7 @@ from folium import plugins
 import geopandas as gpd
 
 
+
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
 #the latitude is first the longitude is the second
 # zoom has to be tried to suit the required view, bigger number means more detailed map, decimal number can be used, zoom control add - and + to the map,
@@ -47,8 +48,22 @@ folium.raster_layers.TileLayer('Open Street Map', name='Open Street Map').add_to
 folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
 
+#adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
+data_location = 'data_files/wall.geojson'
 
-#folium.GeoJson(open('wall.geojson')).add_to(map)
+style={'filColor':'red','color':'yellow'}
+
+#def field_type_colour(feature):
+    #if feature['propeties']['FIELDTYPE'] == 'Location':
+       # return 'yellow'
+   # elif feature['propeties']['FIELDTYPE'] == 'Location':
+        #eturn 'yellow'
+
+folium.GeoJson(data_location, name='geojson', tooltip=folium.GeoJsonTooltip(fields=['Location']),
+               style_function=lambda x:style).add_to(map)
+
+
+
 # add layer control to show different maps
 
 folium.LayerControl().add_to(map)
