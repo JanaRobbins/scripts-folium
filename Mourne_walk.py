@@ -2,8 +2,6 @@ import folium
 from folium import plugins
 import geopandas as gpd
 
-
-
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
 #the latitude is first the longitude is the second
 # zoom has to be tried to suit the required view, bigger number means more detailed map, decimal number can be used, zoom control add - and + to the map,
@@ -14,14 +12,16 @@ map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='1
 
 #adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name
 
-folium.Marker (location=[54.174232, -5.873921], popup="START - Bloody Bridge Car Park", icon=folium.Icon(icon="cloud"),).add_to(map)
-folium.Marker (location=[54.170992, -5.912109], popup="Crannoge Quarry", icon=folium.Icon(color="green"),).add_to(map)
-folium.Marker (location=[54.172241, -5.927770], popup="Bog of Donard", icon=folium.Icon(color="red", icon="info-sigh"),).add_to(map)
-folium.Marker (location=[54.182497, -5.945436], popup="The Castles", icon=folium.Icon(icon="cloud"),).add_to(map)
-folium.Marker (location=[54.188887, -5.962319], popup="Ben Crom Reservoir View", icon=folium.Icon(icon="cloud"),).add_to(map)
-folium.Marker (location=[54.190175, -5.974230], popup="Hares' Gap", icon=folium.Icon(icon="glyphicon glyphicon-camera"),).add_to(map)
+folium.Marker (location=[54.174232, -5.873921], popup="<h2><strong>START<strong></h2><br><h4>Bloody Bridge Car Park</h4>",
+               icon=folium.Icon(color='red', icon_color="black", icon="glyphicon glyphicon-tree-conifer"),).add_to(map)
+folium.Marker (location=[54.170992, -5.912109], popup="<h4>Crannoge Quarry</h4>", icon=folium.Icon(color="green"),).add_to(map)
+folium.Marker (location=[54.172241, -5.927770], popup="<h4>Bog of Donard</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
+folium.Marker (location=[54.182497, -5.945436], popup="<h4>The Castles</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+folium.Marker (location=[54.188887, -5.962319], popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+folium.Marker (location=[54.190175, -5.974230], popup="<h4>Hares' Gap</h4>", icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
 # color of the marker is purple, icon_color is color of the symbol inside the marker,
-folium.Marker (location=[54.209130, -5.999262], popup="FINISH - Meelmore Lodge", icon=folium.Icon(color="purple", icon_color="black", icon="cloud"),).add_to(map)
+folium.Marker (location=[54.209130, -5.999262], popup="<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
+               icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
 
 #adding PolyLine to the project in this example adding one trail to the map, add the name of the line = tooltip
 # color=purple (color for the line), opacity of the line is 3
@@ -34,9 +34,9 @@ trail_coordinates = [
     (54.190175, -5.974230),
     (54.209130, -5.999262),
 ]
-folium.PolyLine(trail_coordinates, color='purple', weight=5, opacity=1, tooltip="Bandy Pad charity walk 12 km").add_to(map)
+folium.PolyLine(trail_coordinates, color='purple', weight=5, opacity=1, tooltip="<h3>Bandy Pad charity walk 12 km</h3>").add_to(map)
 
-#Latitude/longitude popovers - this can help users to find a location
+#Latitude/longitude popovers -  this can help users to find a location
 map.add_child(folium.LatLngPopup())
 
 # remove the next # if you want to see the line for the walk animated
@@ -49,25 +49,14 @@ folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
 
 #adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
-data_location = 'data_files/wall.geojson'
-
-style={'filColor':'red','color':'yellow'}
-
-#def field_type_colour(feature):
-    #if feature['propeties']['FIELDTYPE'] == 'Location':
-       # return 'yellow'
-   # elif feature['propeties']['FIELDTYPE'] == 'Location':
-        #eturn 'yellow'
-
-folium.GeoJson(data_location, name='geojson', tooltip=folium.GeoJsonTooltip(fields=['Location']),
-               style_function=lambda x:style).add_to(map)
 
 
+Mourne_wall = f"data_files/wall.geojson"
+style={'fillColor':'none','color':'yellow'}
+folium.GeoJson(Mourne_wall, name="Mourne Wall", style_function=lambda x:style,  tooltip="<h3>Mourne Wall</h3>").add_to(map)
 
 # add layer control to show different maps
-
 folium.LayerControl().add_to(map)
-
 
 
 #this will save your map - you can open this map at any time and see the changes

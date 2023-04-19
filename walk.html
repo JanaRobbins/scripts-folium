@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ff62d22e410b49f52e8522a1168e1ae6 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ff62d22e410b49f52e8522a1168e1ae6" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ff62d22e410b49f52e8522a1168e1ae6 = L.map(
+                "map_ff62d22e410b49f52e8522a1168e1ae6",
+                {
+                    center: [54.184431, -5.941592],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    name: "Stamen Terrain",
+                }
+            );
+            L.control.scale().addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+
+            
+
+        
+    
+            var tile_layer_01fffcc19da7555f632be3a4149be721 = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+                {"attribution": "Map tiles by \u003ca target=\"_blank\" href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var marker_48525bd10085c6b5ff24430efead488a = L.marker(
+                [54.174232, -5.873921],
+                {}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var icon_06ae282d09f3f44c92c6d2db1a63f22d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon glyphicon-tree-conifer", "iconColor": "black", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_48525bd10085c6b5ff24430efead488a.setIcon(icon_06ae282d09f3f44c92c6d2db1a63f22d);
+        
+    
+        var popup_e121e80ad52152466cc88db1122754ce = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ebd9b3a35a5832788a7cfb827456925a = $(`<div id="html_ebd9b3a35a5832788a7cfb827456925a" style="width: 100.0%; height: 100.0%;"><h2><strong>START<strong></h2><br><h4>Bloody Bridge Car Park</h4></div>`)[0];
+                popup_e121e80ad52152466cc88db1122754ce.setContent(html_ebd9b3a35a5832788a7cfb827456925a);
+            
+        
+
+        marker_48525bd10085c6b5ff24430efead488a.bindPopup(popup_e121e80ad52152466cc88db1122754ce)
+        ;
+
+        
+    
+    
+            var marker_a0bfdbec8302f6b7bfaca7d3ca229bff = L.marker(
+                [54.170992, -5.912109],
+                {}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var icon_f7876b9311eab0aa27d47f24adead48e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_a0bfdbec8302f6b7bfaca7d3ca229bff.setIcon(icon_f7876b9311eab0aa27d47f24adead48e);
+        
+    
+        var popup_1f314734bd92caaa529553ee2a91a175 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ec4c8e7eba3c3b598f479025f5884fcd = $(`<div id="html_ec4c8e7eba3c3b598f479025f5884fcd" style="width: 100.0%; height: 100.0%;"><h4>Crannoge Quarry</h4></div>`)[0];
+                popup_1f314734bd92caaa529553ee2a91a175.setContent(html_ec4c8e7eba3c3b598f479025f5884fcd);
+            
+        
+
+        marker_a0bfdbec8302f6b7bfaca7d3ca229bff.bindPopup(popup_1f314734bd92caaa529553ee2a91a175)
+        ;
+
+        
+    
+    
+            var marker_dbe5f0e0a531984993caed3a54ed4459 = L.marker(
+                [54.172241, -5.92777],
+                {}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var icon_cd5f84a944d78b94955425317616284b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_dbe5f0e0a531984993caed3a54ed4459.setIcon(icon_cd5f84a944d78b94955425317616284b);
+        
+    
+        var popup_d5ee7af0f69c15f871f3919796f07e6f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3113c57fd912abb8a71bf28a437e65f8 = $(`<div id="html_3113c57fd912abb8a71bf28a437e65f8" style="width: 100.0%; height: 100.0%;"><h4>Bog of Donard</h4></div>`)[0];
+                popup_d5ee7af0f69c15f871f3919796f07e6f.setContent(html_3113c57fd912abb8a71bf28a437e65f8);
+            
+        
+
+        marker_dbe5f0e0a531984993caed3a54ed4459.bindPopup(popup_d5ee7af0f69c15f871f3919796f07e6f)
+        ;
+
+        
+    
+    
+            var marker_bc4e6c0aac63be8bbba26e3d732c0421 = L.marker(
+                [54.182497, -5.945436],
+                {}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var icon_8b2c25b81c3c5352cfb44e7ba7137185 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_bc4e6c0aac63be8bbba26e3d732c0421.setIcon(icon_8b2c25b81c3c5352cfb44e7ba7137185);
+        
+    
+        var popup_8df1ddda4abde51d143377ca20be8bdb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c3923ee11babafcd0a0d752d6d07110a = $(`<div id="html_c3923ee11babafcd0a0d752d6d07110a" style="width: 100.0%; height: 100.0%;"><h4>The Castles</h4></div>`)[0];
+                popup_8df1ddda4abde51d143377ca20be8bdb.setContent(html_c3923ee11babafcd0a0d752d6d07110a);
+            
+        
+
+        marker_bc4e6c0aac63be8bbba26e3d732c0421.bindPopup(popup_8df1ddda4abde51d143377ca20be8bdb)
+        ;
+
+        
+    
+    
+            var marker_3041a99e5aeafd252ee1b75c8da3117b = L.marker(
+                [54.188887, -5.962319],
+                {}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var icon_9faa3c612fd9a728bf34a56ac656daf7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_3041a99e5aeafd252ee1b75c8da3117b.setIcon(icon_9faa3c612fd9a728bf34a56ac656daf7);
+        
+    
+        var popup_2f8d43d696958d3005d3aaee7d1cd1de = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fb760cae02a132a1d1f0cdcde7435e39 = $(`<div id="html_fb760cae02a132a1d1f0cdcde7435e39" style="width: 100.0%; height: 100.0%;"><h4>Ben Crom Reservoir View</h4></div>`)[0];
+                popup_2f8d43d696958d3005d3aaee7d1cd1de.setContent(html_fb760cae02a132a1d1f0cdcde7435e39);
+            
+        
+
+        marker_3041a99e5aeafd252ee1b75c8da3117b.bindPopup(popup_2f8d43d696958d3005d3aaee7d1cd1de)
+        ;
+
+        
+    
+    
+            var marker_2babef6c96045c87fb735d4175e4e165 = L.marker(
+                [54.190175, -5.97423],
+                {}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var icon_78375904a51995a4b6c11691936141e5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon glyphicon-camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_2babef6c96045c87fb735d4175e4e165.setIcon(icon_78375904a51995a4b6c11691936141e5);
+        
+    
+        var popup_73cad3c711783c92a02f1a1e69ac78cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ea45eeb525330ef65c542b629a1f8a5a = $(`<div id="html_ea45eeb525330ef65c542b629a1f8a5a" style="width: 100.0%; height: 100.0%;"><h4>Hares' Gap</h4></div>`)[0];
+                popup_73cad3c711783c92a02f1a1e69ac78cd.setContent(html_ea45eeb525330ef65c542b629a1f8a5a);
+            
+        
+
+        marker_2babef6c96045c87fb735d4175e4e165.bindPopup(popup_73cad3c711783c92a02f1a1e69ac78cd)
+        ;
+
+        
+    
+    
+            var marker_32de1438a780db9d988a22b3aec4a56d = L.marker(
+                [54.20913, -5.999262],
+                {}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var icon_590a4bc099845f74091d70833dbcf571 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon glyphicon-cutlery", "iconColor": "black", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_32de1438a780db9d988a22b3aec4a56d.setIcon(icon_590a4bc099845f74091d70833dbcf571);
+        
+    
+        var popup_990f6b723a6ba9d799325a822c0f6b60 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bd5c08101bb735792e12ff2b9ea07e91 = $(`<div id="html_bd5c08101bb735792e12ff2b9ea07e91" style="width: 100.0%; height: 100.0%;"><h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4></div>`)[0];
+                popup_990f6b723a6ba9d799325a822c0f6b60.setContent(html_bd5c08101bb735792e12ff2b9ea07e91);
+            
+        
+
+        marker_32de1438a780db9d988a22b3aec4a56d.bindPopup(popup_990f6b723a6ba9d799325a822c0f6b60)
+        ;
+
+        
+    
+    
+            var poly_line_03f7e8f34f6391f237541b37c2f839a9 = L.polyline(
+                [[54.174232, -5.873921], [54.170992, -5.912109], [54.172241, -5.92777], [54.182497, -5.945436], [54.188887, -5.962319], [54.190175, -5.97423], [54.20913, -5.999262]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            poly_line_03f7e8f34f6391f237541b37c2f839a9.bindTooltip(
+                `<div>
+                     <h3>Bandy Pad charity walk 12 km</h3>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+                var lat_lng_popup_9f59fe80405356da38675a47e4fe5dd3 = L.popup();
+                function latLngPop(e) {
+                    lat_lng_popup_9f59fe80405356da38675a47e4fe5dd3
+                        .setLatLng(e.latlng)
+                        .setContent("Latitude: " + e.latlng.lat.toFixed(4) +
+                                    "<br>Longitude: " + e.latlng.lng.toFixed(4))
+                        .openOn(map_ff62d22e410b49f52e8522a1168e1ae6);
+                    }
+                map_ff62d22e410b49f52e8522a1168e1ae6.on('click', latLngPop);
+            
+    
+            var tile_layer_e86c9d28a88403f93d6ed90d6c7d59d5 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var tile_layer_3c1654de65455db788f638dd96b08a93 = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",
+                {"attribution": "Map tiles by \u003ca target=\"_blank\" href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+            var tile_layer_ed25dc38bc1902cb4b59d5732e2cf2e1 = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg",
+                {"attribution": "Map tiles by \u003ca target=\"_blank\" href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        
+    
+        function geo_json_15c59b13365966d97cddd7d0d32be31b_styler(feature) {
+            switch(feature.properties.LOCATION) {
+                default:
+                    return {"color": "yellow", "fillColor": "none"};
+            }
+        }
+
+        function geo_json_15c59b13365966d97cddd7d0d32be31b_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_15c59b13365966d97cddd7d0d32be31b = L.geoJson(null, {
+                onEachFeature: geo_json_15c59b13365966d97cddd7d0d32be31b_onEachFeature,
+            
+                style: geo_json_15c59b13365966d97cddd7d0d32be31b_styler,
+        });
+
+        function geo_json_15c59b13365966d97cddd7d0d32be31b_add (data) {
+            geo_json_15c59b13365966d97cddd7d0d32be31b
+                .addData(data)
+                .addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+        }
+            geo_json_15c59b13365966d97cddd7d0d32be31b_add({"crs": {"properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}, "type": "name"}, "features": [{"geometry": {"coordinates": [[[[-5.92096709867345, 54.180218441227005], [-5.927020098508001, 54.17440344070587], [-5.931328099018208, 54.16195644061323], [-5.922447098020076, 54.14532244129827], [-5.943703098529346, 54.136697440675725], [-5.963964098715219, 54.14248244062417], [-5.979612099361063, 54.14211444111561], [-5.990920098462714, 54.129357440567865], [-5.996733099688035, 54.126042440833345], [-5.993759099413403, 54.11807544073696], [-5.997734099348109, 54.1172034410889], [-5.996885098306563, 54.115816440906755], [-6.007027099062464, 54.11759144092187], [-6.016859098689701, 54.13325044046072], [-6.022032099573241, 54.13441244099274], [-6.013500098741077, 54.13969544041504], [-6.026331099449729, 54.15092644061564], [-6.030079099673046, 54.151912440378624], [-6.03928909934444, 54.158333440737024], [-6.037591098989537, 54.16466744048048], [-6.036332099180523, 54.166168441143675], [-6.034647099290937, 54.167021440522454], [-6.028700099833223, 54.167001440754646], [-6.023382099115838, 54.174200441045535], [-6.018330099810354, 54.17725244039558], [-6.017735099544224, 54.17807544103333], [-6.009290099438714, 54.1819514403381], [-6.008262099579248, 54.18376744090596], [-6.001982099387278, 54.186692440929114], [-5.999763099441267, 54.19122144075017], [-5.995685099838576, 54.18622744051373], [-5.989677099130696, 54.18486544062832], [-5.988378099228647, 54.18615344084436], [-5.978454098582907, 54.18781144072692], [-5.972272098445065, 54.192546441094024], [-5.96387109904594, 54.19447344094966], [-5.959591098896134, 54.19146044071727], [-5.954741098458526, 54.19097744096031], [-5.952191098342197, 54.18918344073398], [-5.951063098964341, 54.18926244100512], [-5.945367099465011, 54.18842344068363], [-5.942181099306341, 54.18766444084936], [-5.941566098992483, 54.18686044080738], [-5.938046098810861, 54.18408844100673], [-5.924244098965726, 54.18050444050726], [-5.92096709867345, 54.180218441227005]]]], "type": "MultiPolygon"}, "properties": {"LOCATION": "Mourne Wall", "Shape_Area": 37556745.289, "Shape_Leng": 29569.1890575, "WALLID": 1.0}, "type": "Feature"}], "name": "wall", "type": "FeatureCollection"});
+
+        
+    
+            geo_json_15c59b13365966d97cddd7d0d32be31b.bindTooltip(
+                `<div>
+                     <h3>Mourne Wall</h3>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var layer_control_7931f9803a3d88b50acb80e69b30c212 = {
+                base_layers : {
+                    "stamenterrain" : tile_layer_01fffcc19da7555f632be3a4149be721,
+                    "Open Street Map" : tile_layer_e86c9d28a88403f93d6ed90d6c7d59d5,
+                    "Stamen Toner" : tile_layer_3c1654de65455db788f638dd96b08a93,
+                    "Stamen Watercolor" : tile_layer_ed25dc38bc1902cb4b59d5732e2cf2e1,
+                },
+                overlays :  {
+                    "Mourne Wall" : geo_json_15c59b13365966d97cddd7d0d32be31b,
+                },
+            };
+            L.control.layers(
+                layer_control_7931f9803a3d88b50acb80e69b30c212.base_layers,
+                layer_control_7931f9803a3d88b50acb80e69b30c212.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_ff62d22e410b49f52e8522a1168e1ae6);
+            tile_layer_e86c9d28a88403f93d6ed90d6c7d59d5.remove();
+            tile_layer_3c1654de65455db788f638dd96b08a93.remove();
+            tile_layer_ed25dc38bc1902cb4b59d5732e2cf2e1.remove();
+        
+</script>
+</html>
