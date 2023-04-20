@@ -11,6 +11,9 @@ import geopandas as gpd
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
                  zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
 
+#adding Mini Map to the map - right bottom corner
+plugins.MiniMap().add_to(map)
+
 #adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, html styles apply
 
 iconparking = folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))
