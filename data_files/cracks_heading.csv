@@ -1,0 +1,28 @@
+crack_id,crack_name,crack_faces,crack_elevation_m,latitude,longitude,no_winter_routes,no_sport_routes,no_dws,no_boulders,no_trad,2_pitches_available ,3_pitches_available ,4_pitches_available ,5_pitches_available ,6_pitches_available ,approach_carpark_min,parking_id,parking_name
+1,Slieve Binnian,all,700,54.1396,-5.979,0,0,0,18,172,Yes,Yes,No,No,No,90,1,Carrick Little car park
+2,Wee Binnian,all,460,54.1352,-5.986,0,0,0,0,29,Yes,No,No,No,No,30,1,Carrick Little car park
+3,Buzzards Roots,NE,480,54.1574,-5.9801,0,0,0,0,33,Yes,Yes,No,No,No,60,1,Carrick Little car park
+4,Blue Lough Buttress,SE,400,54.1543,-5.9724,1,0,0,0,19,Yes,No,No,No,No,60,1,Carrick Little car park
+5,Slieve Lamagan,all,620,54.1641,-5.9651,1,0,0,0,21,Yes,Yes,Yes,Yes,Yes,60,1,Carrick Little car park
+6,Lower Cove,S,360,54.1654,-5.9541,0,0,0,0,96,Yes,Yes,No,No,No,60,1,Carrick Little car park
+7,Upper Cove ,S,550,54.1734,-5.9543,2,0,0,0,68,Yes,Yes,No,No,No,90,1,Carrick Little car park
+8,Slieve Beg,all ,500,54.1798,-5.9456,1,0,0,0,64,Yes,Yes,Yes,No,No,90,2,Donard Forest Car Park
+9,Slieve Commedagh,S,610,54.1883,-5.9337,1,0,0,0,9,No,No,No,No,No,75,2,Donard Forest Car Park
+10,Eagle Rocks,N,550,54.1868,-5.924,0,0,0,0,64,Yes,No,No,No,No,60,2,Donard Forest Car Park
+11,Annalong Buttress,W,500,54.1741,-5.936,0,0,0,0,21,Yes,No,No,No,No,60,3,Bloody Bridge car park
+12,Chimney Rock,all,630,54.1624,-5.9123,0,0,0,16,3,Yes,Yes,No,No,No,40,3,Bloody Bridge car park
+13,Hares Castle ,SW,381,54.1641,-5.9401,0,0,0,0,22,No,No,No,No,No,60,4,Dunnywater Gates car park
+14,Slieve Bearnagh,all,700,54.1831,-5.9885,4,0,0,0,49,Yes,No,No,No,No,90,5,Meelmore Lodge car park
+15,Bearnagh Slab,NW,550,54.1861,-5.9938,0,0,0,0,14,Yes,Yes,Yes,Yes,No,60,5,Meelmore Lodge car park
+16,Meelmore Buttress,W,530,54.1871,-5.9954,0,0,0,0,2,No,No,No,No,No,50,5,Meelmore Lodge car park
+17,Slievenaglogh Buttress,W,470,54.1933,-5.9738,0,0,0,0,8,Yes,No,No,No,No,45,5,Meelmore Lodge car park
+18,Spellack,E,350,54.1988,-5.9904,0,0,0,0,58,Yes,Yes,No,No,No,30,5,Meelmore Lodge car park
+19,Slievenaglogh Bluffs,E,320,54.1458,-6.0102,0,0,0,0,15,No,No,No,No,No,60,5,Meelmore Lodge car park
+20,Ben Crom,SE,417,54.1664,-5.9892,1,0,0,0,100,Yes,Yes,No,No,No,90,6,Silvenaman Road
+21,Doan ,all,550,54.1681,-6.008,0,0,0,0,29,No,No,No,No,No,60,6,Silvenaman Road
+22,Hen Mountain,all,283,54.1827,-6.0969,0,0,0,6,88,Yes,No,No,No,No,20,7,Sandbank Road - Rocky River
+23,Pigeon Rock ,SE,264,54.1444,-6.0571,1,0,0,0,55,Yes,Yes,Yes,No,No,10,8,Kilkeen/Hilltown Road car park
+24,Eagle Mountain,NE,550,54.1872,-5.9236,7,0,0,0,27,Yes,Yes,Yes,Yes,No,90,2,Donard Forest Car Park
+25,Bloody Bridge Boulders,all,20,54.1739,-5.8735,0,78,1,9,0,No,No,No,No,No,5,3,Bloody Bridge car park
+26,Pierce's Castle,all,460,54.1522,-6.1174,0,0,0,61,0,No,No,No,No,No,30,9,Sandbank Road / Leitrim River
+27,The Rockpool,E,3,54.2039,-5.8913,0,0,0,3,0,No,No,No,No,No,1,10,Rockpool car park

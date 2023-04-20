@@ -12,9 +12,10 @@ map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='1
 
 #adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name
 
+iconparking = folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))
 folium.Marker (location=[54.174232, -5.873921], popup="<h2><strong>START<strong></h2><br><h4>Bloody Bridge Car Park</h4>",
-               icon=folium.Icon(color='red', icon_color="black", icon="glyphicon glyphicon-tree-conifer"),).add_to(map)
-folium.Marker (location=[54.170992, -5.912109], popup="<h4>Crannoge Quarry</h4>", icon=folium.Icon(color="green"),).add_to(map)
+               icon=iconparking).add_to(map)
+folium.Marker (location=[54.170992, -5.912109], popup="<h4>Crannoge Quarry</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
 folium.Marker (location=[54.172241, -5.927770], popup="<h4>Bog of Donard</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
 folium.Marker (location=[54.182497, -5.945436], popup="<h4>The Castles</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
 folium.Marker (location=[54.188887, -5.962319], popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
@@ -22,6 +23,20 @@ folium.Marker (location=[54.190175, -5.974230], popup="<h4>Hares' Gap</h4>", ico
 # color of the marker is purple, icon_color is color of the symbol inside the marker,
 folium.Marker (location=[54.209130, -5.999262], popup="<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
                icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
+
+
+#adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
+#Mourne Wall geojson polygon added, style1 applied, tooltip H3 added, style set to yellow with the filling color transprent =none,
+Mourne_wall = f"data_files/wall.geojson"
+style1={'fillColor':'none','color':'yellow'}
+folium.GeoJson(Mourne_wall, name="Mourne Wall", style_function=lambda x:style1,  tooltip="<h3>Mourne Wall</h3>").add_to(map)
+
+#Mourne paths geojson Linestring added, style1 applied, tooltip H3 added, style set to pink
+Mourne_paths = f"data_files/paths_all.geojson"
+style2={'fillColor':'none','color':'pink'}
+folium.GeoJson(Mourne_paths, name="walking path", style_function=lambda x:style2,  tooltip="<h3>Walking path</h3>").add_to(map)
+
+
 
 #adding PolyLine to the project in this example adding one trail to the map, add the name of the line = tooltip
 # color=purple (color for the line), opacity of the line is 3
@@ -48,12 +63,7 @@ folium.raster_layers.TileLayer('Open Street Map', name='Open Street Map').add_to
 folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
 
-#adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
 
-
-Mourne_wall = f"data_files/wall.geojson"
-style={'fillColor':'none','color':'yellow'}
-folium.GeoJson(Mourne_wall, name="Mourne Wall", style_function=lambda x:style,  tooltip="<h3>Mourne Wall</h3>").add_to(map)
 
 # add layer control to show different maps
 folium.LayerControl().add_to(map)
