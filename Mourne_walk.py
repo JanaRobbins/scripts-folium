@@ -1,6 +1,7 @@
 import folium
 from folium import plugins
-import geopandas as gpd
+import pandas as pd
+
 
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
 #the latitude is first the longitude is the second
@@ -10,6 +11,7 @@ import geopandas as gpd
 
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
                  zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
+
 
 #adding Mini Map to the map - right bottom corner
 
@@ -29,10 +31,19 @@ folium.Marker (location=[54.182497, -5.945436], popup="<h4>The Castles</h4>", ic
 folium.Marker (location=[54.188887, -5.962319], popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
 folium.Marker (location=[54.190175, -5.974230], popup="<h4>Hares' Gap</h4>", icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
 
-# color of the marker is purple, icon_color is color of the symbol inside the marker,
+# color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
+# adding url to this marker popup, this will open Meelmore Logdge in a new web window,
+# FINISH is in the size h2 and bold (=strong)
 
 folium.Marker (location=[54.209130, -5.999262], popup="<a href=http://www.meelmorelodge.co.uk/ target=_blank</a>""<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
                icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
+
+
+#importing csv file (cracks_heading from data_files folder), using latitude and longitude as location (=column in csv file),
+#popup is a column crack_name = climbing location in the Mourens, icon set to red
+
+pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
+popup=row["crack_name"], icon=folium.Icon(color='red', prefix='fa fa-circle-o')).add_to(map), axis=1)
 
 
 #adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
@@ -47,7 +58,6 @@ folium.GeoJson(Mourne_wall, name="Mourne Wall", style_function=lambda x:style1, 
 Mourne_paths = f"data_files/paths_all.geojson"
 style2={'fillColor':'none','color':'pink', 'weight':'4', 'fillOpacity':'0.9'}
 folium.GeoJson(Mourne_paths, name="walking path", style_function=lambda x:style2,  tooltip="<h3>Walking path</h3>").add_to(map)
-
 
 
 #adding PolyLine to the project in this example adding one trail to the map, add the name of the line = tooltip
@@ -71,6 +81,7 @@ map.add_child(folium.LatLngPopup())
 # remove the next # if you want to see the line for the walk animated
 #plugins.AntPath(trail_coordinates).add_to(map)
 
+
 # add different types of the tiles as a base map
 
 folium.raster_layers.TileLayer('Open Street Map', name='Open Street Map').add_to(map)
@@ -78,11 +89,9 @@ folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
 
 
-
 # add layer control to show different maps
 
 folium.LayerControl().add_to(map)
-
 
 #this will save your map - you can open this map at any time and see the changes
 
