@@ -12,6 +12,7 @@ map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='1
                  zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
 
 #adding Mini Map to the map - right bottom corner
+
 plugins.MiniMap().add_to(map)
 
 #adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, html styles apply
@@ -27,8 +28,10 @@ folium.Marker (location=[54.172241, -5.927770], popup="<h4>Bog of Donard</h4>", 
 folium.Marker (location=[54.182497, -5.945436], popup="<h4>The Castles</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
 folium.Marker (location=[54.188887, -5.962319], popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
 folium.Marker (location=[54.190175, -5.974230], popup="<h4>Hares' Gap</h4>", icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
+
 # color of the marker is purple, icon_color is color of the symbol inside the marker,
-folium.Marker (location=[54.209130, -5.999262], popup="<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
+
+folium.Marker (location=[54.209130, -5.999262], popup="<a href=http://www.meelmorelodge.co.uk/ target=_blank</a>""<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
                icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
 
 
