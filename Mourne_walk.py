@@ -20,22 +20,23 @@ plugins.MiniMap().add_to(map)
 #adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, html styles apply
 
 iconparking = folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))
-folium.Marker (location=[54.174232, -5.873921], popup="<h2><strong>START<strong></h2><br><h4>Bloody Bridge Car Park</h4>",
+folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Clik here to see start of the walk</h4>", popup="<h2><strong>START<strong></h2><br><h4>Bloody Bridge Car Park</h4>",
                icon=iconparking).add_to(map)
 
-#adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name
+#adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name, tooltip added with h size of the text
 
-folium.Marker (location=[54.170992, -5.912109], popup="<h4>Crannoge Quarry</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
-folium.Marker (location=[54.172241, -5.927770], popup="<h4>Bog of Donard</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
-folium.Marker (location=[54.182497, -5.945436], popup="<h4>The Castles</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
-folium.Marker (location=[54.188887, -5.962319], popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
-folium.Marker (location=[54.190175, -5.974230], popup="<h4>Hares' Gap</h4>", icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
+folium.Marker (location=[54.170992, -5.912109], tooltip="<h4>Clik here to see what you can see walking up the hill</h4>", popup="<h4>Crannoge Quarry</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
+folium.Marker (location=[54.172241, -5.927770], tooltip="<h4>Clik here to see first crossing over the Mourne Wall</h4>", popup="<h4>Bog of Donard</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
+folium.Marker (location=[54.182497, -5.945436], tooltip="<h4>Clik here to see what is close to this point</h4>", popup="<h4>The Castles</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+folium.Marker (location=[54.188887, -5.962319], tooltip="<h4>Clik here to see what is in near distance</h4>", popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+folium.Marker (location=[54.190175, -5.974230], tooltip="<h4>Clik here to see second crossing over the Mourne Wall</h4>", popup="<h4>Hares' Gap</h4>", icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
+#TODO: add a pictures to the markers
 
 # color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
 # adding url to this marker popup, this will open Meelmore Logdge in a new web window,
 # FINISH is in the size h2 and bold (=strong)
 
-folium.Marker (location=[54.209130, -5.999262], popup="<a href=http://www.meelmorelodge.co.uk/ target=_blank</a>""<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
+folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see where you will finish</h4>", popup="<a href=http://www.meelmorelodge.co.uk/ target=_blank</a>""<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
                icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
 
 
@@ -43,8 +44,8 @@ folium.Marker (location=[54.209130, -5.999262], popup="<a href=http://www.meelmo
 #popup is a column crack_name = climbing location in the Mourens, icon set to red
 
 pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup=row["crack_name"], icon=folium.Icon(color='red', prefix='fa fa-circle-o')).add_to(map), axis=1)
-
+popup=row["crack_name"], tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.Icon(color='red', prefix='fa fa-circle-o')).add_to(map), axis=1)
+#TODO:change size for the crack_name
 
 #adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
 #Mourne Wall geojson polygon added, style1 applied, tooltip H3 added, style set to yellow with the filling color transprent =none,
@@ -61,7 +62,7 @@ folium.GeoJson(Mourne_paths, name="walking path", style_function=lambda x:style2
 
 
 #adding PolyLine to the project in this example adding one trail to the map, add the name of the line = tooltip
-# color=purple (color for the line), opacity of the line is 3
+#color=purple (color for the line), opacity of the line is 1 and weight is 5
 
 trail_coordinates = [
     (54.174232, -5.873921),
@@ -74,7 +75,7 @@ trail_coordinates = [
 ]
 folium.PolyLine(trail_coordinates, color='purple', weight='5', opacity=1, tooltip="<h3>Bandy Pad charity walk 12 km</h3>").add_to(map)
 
-#Latitude/longitude popovers -  this can help users to find a location
+#Latitude/longitude popovers -  this can help users to find a location of the place
 
 map.add_child(folium.LatLngPopup())
 
@@ -87,7 +88,7 @@ map.add_child(folium.LatLngPopup())
 folium.raster_layers.TileLayer('Open Street Map', name='Open Street Map').add_to(map)
 folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
-
+#TODO:add another layers with API key, Google, Bing, Tunderforest
 
 # add layer control to show different maps
 
