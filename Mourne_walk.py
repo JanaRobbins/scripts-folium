@@ -12,6 +12,14 @@ import pandas as pd
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
                  zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
 
+#adding html into the python - box with button
+map.get_root().html.add_child(folium.Element("""
+<div>
+<h5>Test for html</h5><br/>
+<button>click here...</button>
+</div>
+"""
+                                             ))
 
 #adding Mini Map to the map - right bottom corner
 
@@ -30,13 +38,13 @@ folium.Marker (location=[54.172241, -5.927770], tooltip="<h4>Clik here to see fi
 folium.Marker (location=[54.182497, -5.945436], tooltip="<h4>Clik here to see what is close to this point</h4>", popup="<h4>The Castles</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
 folium.Marker (location=[54.188887, -5.962319], tooltip="<h4>Clik here to see what is in near distance</h4>", popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
 folium.Marker (location=[54.190175, -5.974230], tooltip="<h4>Clik here to see second crossing over the Mourne Wall</h4>", popup="<h4>Hares' Gap</h4>", icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
-#TODO: add a pictures to the markers
+#TODO: add pictures to the markers
 
 # color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
-# adding url to this marker popup, this will open Meelmore Logdge in a new web window,
+# adding url to this marker popup, this will open Meelmore Lodge in a new web window,
 # FINISH is in the size h2 and bold (=strong)
 
-folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see where you will finish</h4>", popup="<a href=http://www.meelmorelodge.co.uk/ target=_blank</a>""<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
+folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see end of the walk</h4>", popup="<a href=http://www.meelmorelodge.co.uk/ target=_blank</a>""<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
                icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
 
 
@@ -46,6 +54,9 @@ folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see whe
 pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
 popup=row["crack_name"], tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.Icon(color='red', prefix='fa fa-circle-o')).add_to(map), axis=1)
 #TODO:change size for the crack_name
+
+pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
+popup=row["parking_name"], tooltip="<h4>Clik here to see parking name</h4>", icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
 
 #adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
 #Mourne Wall geojson polygon added, style1 applied, tooltip H3 added, style set to yellow with the filling color transprent =none,
