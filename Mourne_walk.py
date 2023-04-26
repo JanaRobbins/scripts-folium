@@ -1,6 +1,7 @@
 import folium
 from folium import plugins
 import pandas as pd
+import branca
 
 
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
@@ -14,37 +15,89 @@ map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='1
 
 #adding html into the python - box with button
 map.get_root().html.add_child(folium.Element("""
-<div>
-<h5>Test for html</h5><br/>
-<button>click here...</button>
-</div>
-"""
+    <div>
+    <h5>Test for html</h5><br/>
+    <button>click here...</button>
+    </div>
+    """
                                              ))
 
 #adding Mini Map to the map - right bottom corner
 
 plugins.MiniMap().add_to(map)
 
-#adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, html styles apply
+#POINTS OF INTEREST ON THE WAY - Brandy Pad - NO 1 - 7 (Bloody Bridge Car Park to Meelmore Lodge)
 
+#No.1 -adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, pictures added, html styles apply
+html1="""
+    <h2><strong>START OF THE WALK<strong></h2><br><h3>Bloody Bridge Car Park</h3>"
+    <p>
+    <img src="images/BloodyBridge.jpg" alt="Bloody Bridge car park" class="img2">
+    </p>
+    """
 iconparking = folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))
-folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Clik here to see start of the walk</h4>", popup="<h2><strong>START<strong></h2><br><h4>Bloody Bridge Car Park</h4>",
+folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Clik here to see start of the walk</h4>", popup=html1,
                icon=iconparking).add_to(map)
 
-#adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name, tooltip added with h size of the text
+#No.2 - adding green pop up marker with a camera icon inside - Point of Interest in this map, location lat, long and popup with html style - name and picture added,
+# tooltip added with h4 size of the text
+html2="""
+    <h3>Crannoge Quarry</h3><br/>
+    <p>
+    <img src="images/quarry.jpg" alt="Crannoge Quarry" class="img2">
+    </p>
+    """
+folium.Marker (location=[54.170992, -5.912109], tooltip="<h4>Clik here to see what you can see walking up the hill</h4>", popup=html2, icon=folium.Icon(color="green", icon="camera"),).add_to(map)
 
-folium.Marker (location=[54.170992, -5.912109], tooltip="<h4>Clik here to see what you can see walking up the hill</h4>", popup="<h4>Crannoge Quarry</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
-folium.Marker (location=[54.172241, -5.927770], tooltip="<h4>Clik here to see first crossing over the Mourne Wall</h4>", popup="<h4>Bog of Donard</h4>", icon=folium.Icon(color="green", icon="camera"),).add_to(map)
-folium.Marker (location=[54.182497, -5.945436], tooltip="<h4>Clik here to see what is close to this point</h4>", popup="<h4>The Castles</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
-folium.Marker (location=[54.188887, -5.962319], tooltip="<h4>Clik here to see what is in near distance</h4>", popup="<h4>Ben Crom Reservoir View</h4>", icon=folium.Icon(color='green', icon="camera"),).add_to(map)
-folium.Marker (location=[54.190175, -5.974230], tooltip="<h4>Clik here to see second crossing over the Mourne Wall</h4>", popup="<h4>Hares' Gap</h4>", icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
-#TODO: add pictures to the markers
+#No.3 - adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name and picture,
+# tooltip added with h4 size of the text
+html3="""
+    <h3>Bof of Donard</h3><br/><h4>Crossing the wall for the first time</h4><br/>
+    <p>
+    <img src="images/BogOfDonard.jpg" alt="Bog of Donard" class="img2">
+    </p>
+    """
+folium.Marker (location=[54.172241, -5.927770], tooltip="<h4>Clik here to see first crossing over the Mourne Wall</h4>", popup=html3, icon=folium.Icon(color="green", icon="camera"),).add_to(map)
+
+#No.4 - Point of Interest - next marker on the way - html style apply
+html4="""
+    <h3>The Castles</h3><br/><h4>Crossing the Mourne using Brandy Pad</h4><br/>
+    <p>
+    <img src="images/Castles.jpg" alt="The Castles" class="img2">
+    </p>
+    """
+folium.Marker (location=[54.182497, -5.945436], tooltip="<h4>Clik here to see what is close to this point</h4>", popup=html4, icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+
+#No.5 - Point of Interest - next marker on the way - html style apply
+html5="""
+    <h3>View to Ben Crom Reservoir</h3><br/><h4>Enjoy the final part before walking down the hill</h4><br/>
+    <p>
+    <img src="images/BenCrom.jpg" alt="Ben Crom reservoir view" class="img2">
+    </p>
+    """
+folium.Marker (location=[54.188887, -5.962319], tooltip="<h4>Clik here to see what is in near distance</h4>", popup=html5, icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+
+#No.6- Point of Interest - next marker on the way - html style apply
+html6="""
+    <h3>Hares Gap</h3><br/><h4>Cross over the Mourne Wall for the second time</h4><br/>
+    <p>
+    <img src="images/HaresGap.jpg" alt="Hares Gap" class="img2">
+    </p>
+    """
+folium.Marker (location=[54.190175, -5.974230], tooltip="<h4>Clik here to see second crossing over the Mourne Wall</h4>", popup=html6, icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
 
 # color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
-# adding url to this marker popup, this will open Meelmore Lodge in a new web window,
+# adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added
 # FINISH is in the size h2 and bold (=strong)
 
-folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see end of the walk</h4>", popup="<a href=http://www.meelmorelodge.co.uk/ target=_blank</a>""<h2><strong>FINISH</strong></h2><br><h4>Meelmore Lodge</h4>",
+html7="""
+    <a href=http://www.meelmorelodge.co.uk/ target=_blank</a><br/>
+    <h2><strong>FINISH</strong></h2><br><h3>Meelmore Lodge</h3>
+    <p>
+    <img src="images/MeelmoreLodge.jpg" alt="MeelmoreLodge" class="img2">
+    </p>
+    """
+folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
                icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
 
 
