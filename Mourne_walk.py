@@ -4,7 +4,6 @@ from folium.features import DivIcon
 import pandas as pd
 import branca
 
-
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
 #the latitude is first the longitude is the second
 # zoom has to be tried to suit the required view, bigger number means more detailed map, decimal number can be used, zoom control add - and + to the map,
@@ -14,19 +13,18 @@ import branca
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
                  zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
 
+
 #adding text to the map - absolute position in the map
 folium.map.Marker(
 [54.2174, -5.8474],
 icon=DivIcon(
 icon_size=(250,50),
 icon_anchor=(0,0),
-html='<div style="font-size: 25pt">Mourne Mountain Charity Walk - 12 km</div>',
+html='<div style="font-size: 25pt">12 km charity walk</div>',
 )
 ).add_to(map)
 
-
 #adding Mini Map to the map - right bottom corner
-
 plugins.MiniMap().add_to(map)
 
 #POINTS OF INTEREST ON THE WAY - Brandy Pad - NO 1 - 7 (Bloody Bridge Car Park to Meelmore Lodge)
@@ -50,7 +48,7 @@ html2="""
     <img src="images/quarry.jpg" alt="Crannoge Quarry" class="img2">
     </p>
     """
-folium.Marker (location=[54.170992, -5.912109], tooltip="<h4>Clik here to see what you can see walking up the hill</h4>", popup=html2, icon=folium.Icon(color="green", icon="camera"),).add_to(map)
+folium.Marker (location=[54.170992, -5.912109], tooltip="<h4>Clik here to see what you can see walking up the hill</h4>", popup=html2, icon=folium.Icon(color="red", icon="camera"),).add_to(map)
 
 #No.3 - adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name and picture,
 # tooltip added with h4 size of the text
@@ -60,7 +58,7 @@ html3="""
     <img src="images/BogOfDonard.jpg" alt="Bog of Donard" class="img2">
     </p>
     """
-folium.Marker (location=[54.172241, -5.927770], tooltip="<h4>Clik here to see first crossing over the Mourne Wall</h4>", popup=html3, icon=folium.Icon(color="green", icon="camera"),).add_to(map)
+folium.Marker (location=[54.172241, -5.927770], tooltip="<h4>Clik here to see first crossing over the Mourne Wall</h4>", popup=html3, icon=folium.Icon(color="red", icon="camera"),).add_to(map)
 
 #No.4 - Point of Interest - next marker on the way - html style apply
 html4="""
@@ -69,7 +67,7 @@ html4="""
     <img src="images/Castles.jpg" alt="The Castles" class="img2">
     </p>
     """
-folium.Marker (location=[54.182497, -5.945436], tooltip="<h4>Clik here to see what is close to this point</h4>", popup=html4, icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+folium.Marker (location=[54.182497, -5.945436], tooltip="<h4>Clik here to see what is close to this point</h4>", popup=html4, icon=folium.Icon(color='red', icon="camera"),).add_to(map)
 
 #No.5 - Point of Interest - next marker on the way - html style apply
 html5="""
@@ -78,7 +76,7 @@ html5="""
     <img src="images/BenCrom.jpg" alt="Ben Crom reservoir view" class="img2">
     </p>
     """
-folium.Marker (location=[54.188887, -5.962319], tooltip="<h4>Clik here to see what is in near distance</h4>", popup=html5, icon=folium.Icon(color='green', icon="camera"),).add_to(map)
+folium.Marker (location=[54.188887, -5.962319], tooltip="<h4>Clik here to see what is in near distance</h4>", popup=html5, icon=folium.Icon(color='red', icon="camera"),).add_to(map)
 
 #No.6- Point of Interest - next marker on the way - html style apply
 html6="""
@@ -87,7 +85,7 @@ html6="""
     <img src="images/HaresGap.jpg" alt="Hares Gap" class="img2">
     </p>
     """
-folium.Marker (location=[54.190175, -5.974230], tooltip="<h4>Clik here to see second crossing over the Mourne Wall</h4>", popup=html6, icon=folium.Icon(color='green', icon="glyphicon glyphicon-camera"),).add_to(map)
+folium.Marker (location=[54.190175, -5.974230], tooltip="<h4>Clik here to see second crossing over the Mourne Wall</h4>", popup=html6, icon=folium.Icon(color='red', icon="glyphicon glyphicon-camera"),).add_to(map)
 
 # color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
 # adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added
@@ -103,13 +101,14 @@ html7="""
 folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
                icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
 
+#TODO:add navigator to the map...
 #navigator.geolocation.watchPosition(showPosition)
 
 #importing csv file (cracks_heading from data_files folder), using latitude and longitude as location (=column in csv file),
 #popup is a column crack_name = climbing location in the Mournes, icon set to red
 
 pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup=row["crack_name"], tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.Icon(color='red', prefix='fa fa-circle-o')).add_to(map), axis=1)
+popup=row["crack_name"], tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Mountains-icon.png', icon_size=(50,50))).add_to(map), axis=1)
 #TODO:change size for the crack_name
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
