@@ -2,6 +2,7 @@ import folium
 from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
+import geopandas as gpd
 import branca
 
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
@@ -13,6 +14,8 @@ import branca
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
                  zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
 
+#control plugin to geolocate the user
+plugins.LocateControl().add_to(map)
 
 #adding text to the map - absolute position in the map
 folium.map.Marker(
@@ -106,9 +109,11 @@ folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see end
 
 #importing csv file (cracks_heading from data_files folder), using latitude and longitude as location (=column in csv file),
 #popup is a column crack_name = climbing location in the Mournes, icon set to red
+#set markers to custom png pictures
+
 
 pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup=row["crack_name"], tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Mountains-icon.png', icon_size=(50,50))).add_to(map), axis=1)
+popup=row["crack_name"], tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Cracks.png', icon_size=(40,40))).add_to(map), axis=1)
 #TODO:change size for the crack_name
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
@@ -149,7 +154,6 @@ map.add_child(folium.LatLngPopup())
 # remove the next # if you want to see the line for the walk animated
 #plugins.AntPath(trail_coordinates).add_to(map)
 
-
 # add different types of the tiles as a base map
 
 folium.raster_layers.TileLayer('Open Street Map', name='Open Street Map').add_to(map)
@@ -164,6 +168,3 @@ folium.LayerControl().add_to(map)
 #this will save your map - you can open this map at any time and see the changes
 
 map.save("walk.html")
-
-
-
