@@ -12,10 +12,16 @@ import branca
 #control_scale shows the scale on the map,
 
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
-                 zoom_start=14, zoom_control=True, tiles='Stamen Terrain', name='Stamen Terrain')
+                 zoom_start=14, zoom_control=True, tiles='Open Street Map', name='Open Street Map')
+
 
 #control plugin to geolocate the user
 plugins.LocateControl().add_to(map)
+
+
+#full screen button in the map
+plugins.Fullscreen(force_separate_button=True, title='Click here to see Full Screen').add_to(map)
+
 
 #adding text to the map - absolute position in the map
 folium.map.Marker(
@@ -28,7 +34,7 @@ html='<div style="font-size: 25pt">12 km charity walk</div>',
 ).add_to(map)
 
 #adding Mini Map to the map - right bottom corner
-plugins.MiniMap().add_to(map)
+plugins.MiniMap(width='300',height='300').add_to(map)
 
 #POINTS OF INTEREST ON THE WAY - Brandy Pad - NO 1 - 7 (Bloody Bridge Car Park to Meelmore Lodge)
 
@@ -156,7 +162,7 @@ map.add_child(folium.LatLngPopup())
 
 # add different types of the tiles as a base map
 
-folium.raster_layers.TileLayer('Open Street Map', name='Open Street Map').add_to(map)
+folium.raster_layers.TileLayer('Stamen Terrain', name='Stamen Terrain').add_to(map)
 folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
 #TODO:add another layers with API key, Google, Bing, Tunderforest
