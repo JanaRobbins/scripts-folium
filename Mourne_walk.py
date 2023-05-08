@@ -115,6 +115,8 @@ html7="""
 #folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
 #               icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
 
+# Cycling through all the points of interest
+
 x_coordinates = [54.170992, 54.172241, 54.182497, 54.188887, 54.190175, 54.209130]
 y_coordinates = [-5.912109, -5.927770, -5.945436, -5.962319, -5.974230, -5.999262]
 htmls = [html2, html3, html4, html5, html6, html7]
@@ -130,11 +132,11 @@ for myMarker in range(len(x_coordinates)):
 
 
 pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup=row["crack_name"], tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Cracks.png', icon_size=(40,40))).add_to(map), axis=1)
+popup="<h4>" + row["crack_name"] + "</h4>", tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Cracks.png', icon_size=(40,40))).add_to(map), axis=1)
 #TODO:change size for the crack_name
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup=row["parking_name"], tooltip="<h4>Clik here to see parking name</h4>", icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
+popup="<h4>" + row["parking_name"] + "</h4>", tooltip="<h4>Clik here to see parking name</h4>", icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
 #TODO:change size for the parking'
 
 
@@ -167,7 +169,8 @@ folium.PolyLine(trail_coordinates, color='purple', weight='5', opacity=1, toolti
 
 #Latitude/longitude popovers -  this can help users to find a location of the place
 
-map.add_child(folium.LatLngPopup())
+my_popup = folium.LatLngPopup()
+map.add_child(my_popup)
 
 # remove the next # if you want to see the line for the walk animated
 #plugins.AntPath(trail_coordinates).add_to(map)
