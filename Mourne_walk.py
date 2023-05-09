@@ -3,6 +3,7 @@ import folium
 from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
+from folium.plugins import MousePosition
 import geopandas as gpd
 import branca
 
@@ -14,6 +15,19 @@ import branca
 
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
                  zoom_start=14, zoom_control=True, tiles='Open Street Map', name='Open Street Map')
+
+formatter = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+
+MousePosition(
+    position="topright",
+    separator=" | ",
+    empty_string="NaN",
+    lng_first=True,
+    num_digits=20,
+    prefix="Coordinates:",
+    lat_formatter=formatter,
+    lng_formatter=formatter,
+).add_to(map)
 
 
 #control plugin to geolocate the user
@@ -42,14 +56,11 @@ html1="""
     <img src="images/BloodyBridge.jpg" alt="Bloody Bridge car park" class="img2">
     </p>
     """
-iconparking = folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))
+iconstart = folium.features.CustomIcon('./images/Start.png', icon_size=(100,60))
 folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Clik here to see start of the walk</h4>", popup=html1,
-               icon=iconparking).add_to(map)
+               icon=iconstart).add_to(map)
 
-#folium Icon style for point two to six - style could be changed here
-#point2to6 = folium.Icon(color='red', icon='camera')
 
-poi = folium.Icon(color='red', icon='camera')
 #No.2 - adding green pop up marker with a camera icon inside - Point of Interest in this map, location lat, long and popup with html style - name and picture added,
 # tooltip added with h4 size of the text++--
 
@@ -112,19 +123,21 @@ html7="""
     <img src="images/MeelmoreLodge.jpg" alt="Meelmore Lodge" class="img2">
     </p>
     """
-#folium.Marker (location=[54.209130, -5.999262],tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
-#               icon=folium.Icon(color="red", icon_color="black", icon="glyphicon glyphicon-cutlery"),).add_to(map)
+
+iconfinish = folium.features.CustomIcon('./images/Finish.png', icon_size=(100,60))
+folium.Marker (location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
+               icon=iconfinish).add_to(map)
 
 # Cycling through all the points of interest
 
-x_coordinates = [54.170992, 54.172241, 54.182497, 54.188887, 54.190175, 54.209130]
-y_coordinates = [-5.912109, -5.927770, -5.945436, -5.962319, -5.974230, -5.999262]
-htmls = [html2, html3, html4, html5, html6, html7]
+x_coordinates = [54.170992, 54.172241, 54.182497, 54.188887, 54.190175]
+y_coordinates = [-5.912109, -5.927770, -5.945436, -5.962319, -5.974230]
+htmls = [html2, html3, html4, html5, html6]
 
 for myMarker in range(len(x_coordinates)):
     folium.Marker(location=[x_coordinates[myMarker], y_coordinates[myMarker]],
                   tooltip="<h4>Clik here to see what is close to this point</h4>",
-                  popup=htmls[myMarker], icon=folium.Icon(color='red', icon='camera'), ).add_to(map)
+                  popup=htmls[myMarker], icon=folium.Icon(color='red', icon='camera')).add_to(map)
 
 #importing csv file (cracks_heading from data_files folder), using latitude and longitude as location (=column in csv file),
 #popup is a column crack_name = climbing location in the Mournes, icon set to red
@@ -132,12 +145,10 @@ for myMarker in range(len(x_coordinates)):
 
 
 pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h4>" + row["crack_name"] + "</h4>", tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Cracks.png', icon_size=(40,40))).add_to(map), axis=1)
-#TODO:change size for the crack_name
+popup="<h3>" + row["crack_name"] + "</h3>", tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Cracks.png', icon_size=(40,40))).add_to(map), axis=1)
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h4>" + row["parking_name"] + "</h4>", tooltip="<h4>Clik here to see parking name</h4>", icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
-#TODO:change size for the parking'
+popup="<h3>" + row["parking_name"] + "</h3>", tooltip="<h4>Clik here to see parking name</h4>", icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
 
 
 #adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
