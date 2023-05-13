@@ -16,31 +16,13 @@ import branca
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
                  zoom_start=14, zoom_control=True, tiles='Open Street Map', name='Open Street Map')
 
-formatter = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+# add different types of the tiles as a base map
 
-MousePosition(
-    position="topright",
-    separator=" | ",
-    empty_string="NaN",
-    lng_first=True,
-    num_digits=20,
-    prefix="Coordinates:",
-    lat_formatter=formatter,
-    lng_formatter=formatter,
-).add_to(map)
+folium.raster_layers.TileLayer('Stamen Terrain', name='Stamen Terrain').add_to(map)
+folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
+folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
+#TODO:add another layers with API key, Google, Bing, Tunderforest
 
-
-#control plugin to geolocate the user
-plugins.LocateControl().add_to(map)
-
-#adding a floating image in HTML canvas on buttom left of the map with **kwargs - additional keyword argument as CSS properties
-plugins.FloatImage('./images/j.png', bottom=4,left=1, width='60px').add_to(map)
-
-#full screen button in the map
-plugins.Fullscreen(force_separate_button=True, title='Click here to see Full Screen').add_to(map)
-
-#adding Mini Map to the map - right bottom corner
-plugins.MiniMap(width='300',height='300').add_to(map)
 
 #adding text to the map - absolute position in the map
 folium.map.Marker([54.2174, -5.8474],icon=DivIcon(icon_size=(250,50),icon_anchor=(0,0),
@@ -53,80 +35,54 @@ html='<div style="font-size: 25pt">12 km charity walk</div>',)).add_to(map)
 html1="""
     <h2><strong>START OF THE WALK<strong></h2><br><h3>Bloody Bridge Car Park</h3>"
     <p>
-    <img src="images/BloodyBridge.jpg" alt="Bloody Bridge car park" class="img2">
+    <img src="images/BloodyBridge.jpg" alt="Bloody Bridge car park">
     </p>
     """
 iconstart = folium.features.CustomIcon('./images/Start.png', icon_size=(100,60))
 folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Clik here to see start of the walk</h4>", popup=html1,
                icon=iconstart).add_to(map)
 
+#htmls=pd.read.csv
+#pd.read.csv=("./data_files/popup26.csv").apply(popup=row["text"])
+#neco jako <br/> aby to bylo na druhem radku a row[“image”] a  alt=row[“alt”]
+#TODO: cycling the popup
 
-#No.2 - adding green pop up marker with a camera icon inside - Point of Interest in this map, location lat, long and popup with html style - name and picture added,
-# tooltip added with h4 size of the text++--
-
+#No.2 - 6 Popup - HTML style for the description (h3 style apply) and a picture of the area
 
 html2="""
     <h3>Walk up to Crannoge Quarry</h3><br/>
     <p>
-    <img src="images/quarry.jpg" alt="Crannoge Quarry" class="img2">
+    <img src="images/quarry.jpg" alt="Crannoge Quarry">
     </p>
     """
-#folium.Marker (location=[54.170992, -5.912109], tooltip="<h4>Clik here to see what you can see walking up the hill</h4>", popup=html2, icon=folium.Icon(color='red', icon='camera'),).add_to(map)
 
-#No.3 - adding simple pop up markers - Point of Interest in this map, location lat, long and popup with the required name and picture,
-# tooltip added with h4 size of the text
 html3="""
     <h3>Climb over Mourne Wall at Bog of Slieve Donard</h3><br/><h4>The hardest part done</h4><br/>
     <p>
-    <img src="images/BogOfDonard.jpg" alt="Bog of Donard" class="img2">
+    <img src="images/BogOfDonard.jpg" alt="Bog of Donard">
     </p>
     """
-#folium.Marker (location=[54.172241, -5.927770], tooltip="<h4>Clik here to see first crossing over the Mourne Wall</h4>", popup=html3, icon=folium.Icon(color='red', icon='camera'),).add_to(map)
 
-#No.4 - Point of Interest - next marker on the way - html style apply
 html4="""
     <h3>Walk under the Castles</h3><br/><h4>You can walk using Brandy Pad - smugglers crossing way over the mountain</h4><br/>
     <p>
-    <img src="images/Castles.jpg" alt="The Castles" class="img2">
+    <img src="images/Castles.jpg" alt="The Castles">
     </p>
     """
-#folium.Marker (location=[54.182497, -5.945436], tooltip="<h4>Clik here to see what is close to this point</h4>", popup=html4, icon=folium.Icon(color='red', icon='camera'),).add_to(map)
 
-
-#No.5 - Point of Interest - next marker on the way - html style apply
 html5="""
     <h3>Enjoy Ben Crom Reservoir view</h3><br/><h4>Enjoy the final part before walking down the hill</h4><br/>
     <p>
-    <img src="images/BenCrom.jpg" alt="Ben Crom reservoir view" class="img2">
+    <img src="images/BenCrom.jpg" alt="Ben Crom reservoir view">
     </p>
     """
-#folium.Marker (location=[54.188887, -5.962319], tooltip="<h4>Clik here to see what is in near distance</h4>", popup=html5, icon=folium.Icon(color='red', icon='camera'),).add_to(map)
 
-#No.6- Point of Interest - next marker on the way - html style apply
 html6="""
     <h3>Reaching Hares Gap walk down the hill</h3><br/><h4>Cross over the Mourne Wall for the second time</h4><br/>
     <p>
-    <img src="images/HaresGap.jpg" alt="Hares Gap" class="img2">
+    <img src="images/HaresGap.jpg" alt="Hares Gap">
     </p>
     """
-
-#folium.Marker (location=[54.190175, -5.974230], tooltip="<h4>Clik here to see second crossing over the Mourne Wall</h4>", popup=html6, icon=poi).add_to(map)
-
-# color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
-# adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added
-# FINISH is in the size h2 and bold (=strong)
-
-html7="""
-    <a href=http://www.meelmorelodge.co.uk/ target=_blank</a><br/>
-    <h2><strong>FINISH</strong></h2><br><h3>Meelmore Lodge</h3>
-    <p>
-    <img src="images/MeelmoreLodge.jpg" alt="Meelmore Lodge" class="img2">
-    </p>
-    """
-
-iconfinish = folium.features.CustomIcon('./images/Finish.png', icon_size=(100,60))
-folium.Marker (location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
-               icon=iconfinish).add_to(map)
 
 # Cycling through all the points of interest
 
@@ -136,16 +92,56 @@ htmls = [html2, html3, html4, html5, html6]
 
 for myMarker in range(len(x_coordinates)):
     folium.Marker(location=[x_coordinates[myMarker], y_coordinates[myMarker]],
-                  tooltip="<h4>Clik here to see what is close to this point</h4>",
+                  tooltip="<h4>Clik here to see the surrounding area</h4>",
                   popup=htmls[myMarker], icon=folium.Icon(color='red', icon='camera')).add_to(map)
+
+# color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
+# adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added
+# FINISH is in the size h2 and bold (=strong)
+
+html7="""
+    <a href=http://www.meelmorelodge.co.uk/ target=_blank</a><br/>
+    <h2><strong>FINISH</strong></h2><br><h3>Meelmore Lodge</h3>
+    <p>
+    <img src="images/MeelmoreLodge.jpg" alt="Meelmore Lodge">
+    </p>
+    """
+
+iconfinish = folium.features.CustomIcon('./images/Finish.png', icon_size=(100,60))
+folium.Marker (location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
+               icon=iconfinish).add_to(map)
 
 #importing csv file (cracks_heading from data_files folder), using latitude and longitude as location (=column in csv file),
 #popup is a column crack_name = climbing location in the Mournes, icon set to red
 #set markers to custom png pictures
 
+#icon_climb=folium.features.CustomIcon('./images/0-250.png', icon_size=(50,50)
+#def image:
+    #if crack_elevation_m in range(0,250):
+      #  return "./images/0-250.png"
+   # elif crack_elevation_m  in range(251,400):
+       # return "./images/251-400.png"
+  #  elif crack_elevation_m  in range(401,550):
+    #    return "./images/401-550.png"
+  #  else:
+   #     return "./images/551-800.png"
+  #  return "./images/0-250.png"
 
-pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row["crack_name"] + "</h3>", tooltip="<h4>Clik here to see name of the climbing area</h4>", icon=folium.features.CustomIcon('./images/Cracks.png', icon_size=(40,40))).add_to(map), axis=1)
+
+#for MyImg in range(0,len(df)):
+	#    df=df['crack_elevation_m'].iloc[i]
+	#    if  crack_elevation_m in range(0,250):
+	 #       image ='./images/0-250.png'
+     #   if crack_elevation_m in range(251, 400):
+     #       image = './images/251-400.png'
+	 #   elif crack_elevation_m in range(401,550):
+	  #      image ='./images/401-550.png'
+	 #   else:
+	    #     image ='./images/551-800.png'
+
+df=pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
+popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", c=row['crack_name'], tooltip="<h4>Clik here to see the climbing area</h4>", icon=folium.features.CustomIcon('./images/251-400.png', icon_size=(50,50))).add_to(map), axis=1)
+
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
 popup="<h3>" + row["parking_name"] + "</h3>", tooltip="<h4>Clik here to see parking name</h4>", icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
@@ -178,25 +174,33 @@ trail_coordinates = [
 ]
 folium.PolyLine(trail_coordinates, color='purple', weight='5', opacity=1, tooltip="<h3>Bandy Pad charity walk 12 km</h3>").add_to(map)
 
-#Latitude/longitude popovers -  this can help users to find a location of the place
-
+#Latitude/longitude popovers -  this can help users to find a geolocation on the map
 my_popup = folium.LatLngPopup()
 map.add_child(my_popup)
 
 # remove the next # if you want to see the line for the walk animated
 #plugins.AntPath(trail_coordinates).add_to(map)
 
-# add different types of the tiles as a base map
+#Add a field that shows the coordinates of the mouse position on the top right
+fmtr = "function(num) {return L.Util.formatNum(num, 4) + ' º ';};"
+plugins.MousePosition(position="topright", separator="  -  ", num_digits=5, prefix="<h3>"+"Coordinates:"+"</h3>", lat_formatter=fmtr, lng_formatter=fmtr).add_to(map)
 
-folium.raster_layers.TileLayer('Stamen Terrain', name='Stamen Terrain').add_to(map)
-folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
-folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
-#TODO:add another layers with API key, Google, Bing, Tunderforest
+#plugins.MeasureControl(position='bottomleft').add_to(map)
+
+#control plugin to geolocate the user
+plugins.LocateControl().add_to(map)
+
+#adding a floating image in HTML canvas on buttom left of the map with **kwargs - additional keyword argument as CSS properties
+plugins.FloatImage('./images/j.png', bottom=4,left=1, width='60px').add_to(map)
+
+#full screen button in the map
+plugins.Fullscreen(force_separate_button=True, title='Click here to see Full Screen').add_to(map)
+
+#adding Mini Map to the map - right bottom corner
+plugins.MiniMap(width='300',height='300').add_to(map)
 
 # add layer control to show different maps
-
 folium.LayerControl().add_to(map)
 
 #this will save your map - you can open this map from the finder at any time and see the changes
-
 map.save("walk.html")
