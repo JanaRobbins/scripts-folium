@@ -1,9 +1,8 @@
-# dependencies
+# imported Python libraries
 import folium
 from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
-from folium.plugins import MousePosition
 import geopandas as gpd
 import branca
 
@@ -108,12 +107,11 @@ html7="""
     """
 
 iconfinish = folium.features.CustomIcon('./images/Finish.png', icon_size=(100,60))
-folium.Marker (location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7,
-               icon=iconfinish).add_to(map)
+folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7, icon=iconfinish).add_to(map)
 
-#importing csv file (cracks_heading from data_files folder), using latitude and longitude as location (=column in csv file),
-#popup is a column crack_name = climbing location in the Mournes, icon set to red
-#set markers to custom png pictures
+# importing csv file (cracks_heading from data_files folder), using latitude and longitude as location (=column in csv file),
+# popup is a column crack_name = climbing location in the Mournes, icon set to red
+# set markers to custom png pictures
 
 #icon_climb=folium.features.CustomIcon('./images/0-250.png', icon_size=(50,50)
 #def image:
@@ -140,29 +138,28 @@ folium.Marker (location=[54.209130, -5.999262], tooltip="<h4>Clik here to see en
 	    #     image ='./images/551-800.png'
 
 df=pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", c=row['crack_name'], tooltip="<h4>Clik here to see the climbing area</h4>", icon=folium.features.CustomIcon('./images/251-400.png', icon_size=(50,50))).add_to(map), axis=1)
+popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", tooltip="<h4>Clik here to see the climbing area</h4>", icon=folium.features.CustomIcon('./images/251-400.png', icon_size=(50,50))).add_to(map), axis=1)
 
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
 popup="<h3>" + row["parking_name"] + "</h3>", tooltip="<h4>Clik here to see parking name</h4>", icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
 
 
-#adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
-#Mourne Wall geojson polygon added, style1 applied, tooltip H3 added, style set to yellow with the filling color transparent =none,
+# adding geojson layer to the map - file is in data_files/xy.geosjson folder. Location is a name of one column from the geojson file
+# Mourne Wall geojson polygon added, style1 applied, tooltip H3 added, style set to yellow with the filling color transparent =none,
 
 Mourne_wall = f"data_files/wall.geojson"
 style1={'fillColor':'none','color':'yellow', 'weight':'6', 'fillOpacity':'0.8'}
 folium.GeoJson(Mourne_wall, name="Mourne Wall", style_function=lambda x:style1,  tooltip="<h3>Mourne Wall</h3>").add_to(map)
 
-#Mourne paths geojson Linestring added, style1 applied, tooltip H3 added, style set to pink
+# Mourne paths geojson Linestring added, style1 applied, tooltip H3 added, style set to pink
 
 Mourne_paths = f"data_files/paths_all.geojson"
 style2={'fillColor':'none','color':'purple', 'weight':'1.2', 'fillOpacity':'0.8'}
 folium.GeoJson(Mourne_paths, name="walking path", style_function=lambda x:style2,  tooltip="<h3>Walking path</h3>").add_to(map)
 
-#adding PolyLine to the project in this example adding one trail to the map, add the name of the line = tooltip
-#color=purple (color for the line), opacity of the line is 1 and weight is 5
-
+# adding PolyLine to the project in this example adding one trail to the map, add the name of the line = tooltip
+# color=purple (color for the line), opacity of the line is 1 and weight is 5
 trail_coordinates = [
     (54.174232, -5.873921),
     (54.170992, -5.912109),
@@ -174,33 +171,37 @@ trail_coordinates = [
 ]
 folium.PolyLine(trail_coordinates, color='purple', weight='5', opacity=1, tooltip="<h3>Bandy Pad charity walk 12 km</h3>").add_to(map)
 
-#Latitude/longitude popovers -  this can help users to find a geolocation on the map
+# Latitude/longitude popovers -  this can help users to find a geolocation on the map
 my_popup = folium.LatLngPopup()
 map.add_child(my_popup)
 
 # remove the next # if you want to see the line for the walk animated
-#plugins.AntPath(trail_coordinates).add_to(map)
+# plugins.AntPath(trail_coordinates).add_to(map)
 
-#Add a field that shows the coordinates of the mouse position on the top right
+# Add a field that shows the coordinates of the mouse position on the top right
 fmtr = "function(num) {return L.Util.formatNum(num, 4) + ' º ';};"
 plugins.MousePosition(position="topright", separator="  -  ", num_digits=5, prefix="<h3>"+"Coordinates:"+"</h3>", lat_formatter=fmtr, lng_formatter=fmtr).add_to(map)
 
-#plugins.MeasureControl(position='bottomleft').add_to(map)
+# measure control added - check your position during walk and how long do you have to walk to reach another destination
+folium.plugins.MeasureControl(position='bottomleft').add_to(map)
 
-#control plugin to geolocate the user
+# control plugin to geolocate the user
 plugins.LocateControl().add_to(map)
 
-#adding a floating image in HTML canvas on buttom left of the map with **kwargs - additional keyword argument as CSS properties
-plugins.FloatImage('./images/j.png', bottom=4,left=1, width='60px').add_to(map)
+# adding a floating image in HTML canvas on buttom left of the map with **kwargs - additional keyword argument as CSS properties
+plugins.FloatImage('./images/j.png', bottom=8,left=1, width='60px').add_to(map)
 
-#full screen button in the map
+# full screen button in the map
 plugins.Fullscreen(force_separate_button=True, title='Click here to see Full Screen').add_to(map)
 
-#adding Mini Map to the map - right bottom corner
+# adding Mini Map to the map - right bottom corner
 plugins.MiniMap(width='300',height='300').add_to(map)
+
+# a search box was added
+folium.plugins.Geocoder().add_to(map)
 
 # add layer control to show different maps
 folium.LayerControl().add_to(map)
 
-#this will save your map - you can open this map from the finder at any time and see the changes
+# this will save your map - you can open this map from the finder at any time and see the changes
 map.save("walk.html")
