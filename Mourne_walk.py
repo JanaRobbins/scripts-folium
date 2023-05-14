@@ -3,8 +3,10 @@ import folium
 from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
-import geopandas as gpd
-import branca
+import numpy as np
+#import geopandas as gpd
+#import branca
+
 
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
 #the latitude is first the longitude is the second
@@ -100,7 +102,7 @@ for myMarker in range(len(x_coordinates)):
 
 html7="""
     <a href=http://www.meelmorelodge.co.uk/ target=_blank</a><br/>
-    <h2><strong>FINISH</strong></h2><br><h3>Meelmore Lodge</h3>
+    <h2><strong>FINISH</strong></h2><br><h3>Meelmore Lodge Hostel, campsite and parking</h3>
     <p>
     <img src="images/MeelmoreLodge.jpg" alt="Meelmore Lodge">
     </p>
@@ -138,7 +140,7 @@ folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end
 	    #     image ='./images/551-800.png'
 
 df=pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", tooltip="<h4>Clik here to see the climbing area</h4>", icon=folium.features.CustomIcon('./images/251-400.png', icon_size=(50,50))).add_to(map), axis=1)
+popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", tooltip="<h4>Clik here to see the climbing area</h4>", icon=folium.features.CustomIcon('./images/cracks.png', icon_size=(50,50))).add_to(map), axis=1)
 
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
@@ -180,16 +182,17 @@ map.add_child(my_popup)
 
 # Add a field that shows the coordinates of the mouse position on the top right
 fmtr = "function(num) {return L.Util.formatNum(num, 4) + ' º ';};"
-plugins.MousePosition(position="topright", separator="  -  ", num_digits=5, prefix="<h3>"+"Coordinates:"+"</h3>", lat_formatter=fmtr, lng_formatter=fmtr).add_to(map)
+plugins.MousePosition(position="topright", separator="  //  ", num_digits=5, prefix="<h3>"+"Coordinates:"+"</h3>", lat_formatter=fmtr, lng_formatter=fmtr).add_to(map)
 
 # measure control added - check your position during walk and how long do you have to walk to reach another destination
-folium.plugins.MeasureControl(position='bottomleft').add_to(map)
+folium.plugins.MeasureControl(position='topleft', active_color='red', completed_color='red').add_to(map)
+
 
 # control plugin to geolocate the user
 plugins.LocateControl().add_to(map)
 
 # adding a floating image in HTML canvas on buttom left of the map with **kwargs - additional keyword argument as CSS properties
-plugins.FloatImage('./images/j.png', bottom=8,left=1, width='60px').add_to(map)
+plugins.FloatImage('./images/j.png', bottom=6,left=1, width='60px').add_to(map)
 
 # full screen button in the map
 plugins.Fullscreen(force_separate_button=True, title='Click here to see Full Screen').add_to(map)
