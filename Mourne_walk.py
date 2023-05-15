@@ -3,9 +3,8 @@ import folium
 from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
-import numpy as np
-#import geopandas as gpd
-#import branca
+import geopandas as gpd
+import branca
 
 
 #folium map with a centre of your map (Mourne Mountain - close to Slieve Donard in this example), the name is map, more descriptive than only common m
@@ -24,6 +23,56 @@ folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
 #TODO:add another layers with API key, Google, Bing, Tunderforest
 
+df = pd.read_csv("./data_files/peaks.csv")
+
+# Create point geometries
+geometry = gpd.points_from_xy(df.Longitude, df.Latitude)
+geo_df = gpd.GeoDataFrame(
+    df[["Name", "Height", "Irish_Grid","Latitude", "Longitude", "Type"]], geometry=geometry
+)
+
+# Create a geometry list from the GeoDataFrame
+geo_df_list = [[point.xy[1][0], point.xy[0][0]] for point in geo_df.geometry]
+
+# Iterate through list and add a marker for each volcano, color-coded by its type.
+i = 0
+for coordinates in geo_df_list:
+    # assign a color marker for the type of volcano, Strato being the most common
+    if geo_df.Type[i] == "580m-630m":
+        type_color = "pink"
+    elif geo_df.Type[i] == "631m-700m":
+        type_color = "orange"
+    elif geo_df.Type[i] == "701m-750m":
+        type_color = "purple"
+    elif geo_df.Type[i] == "751m-850m":
+        type_color = "lightgray"
+    else:
+        type_color = "blue"
+
+    # Place the markers with the popup labels and data
+    map.add_child(
+        folium.Marker(
+            location=coordinates,
+            popup="Name: "
+            + str(geo_df.Name[i])
+            + "<br>"
+            + "<br>"
+            + "Height: "
+            + str(geo_df.Height[i])
+            + "<br>"
+            + "<br>"
+            + "Irish Grid:"
+            + str(geo_df.Irish_Grid[i])
+            + "<br>"
+            + "<br>"
+            + "Coordinates: "
+            + str(geo_df_list[i]),
+            icon=folium.Icon(color="%s" % type_color),
+        )
+    )
+    i = i + 1
+
+plugins.FloatImage('./images/legend_peaks.png', bottom=70,left=91, width='200px').add_to(map)
 
 #adding text to the map - absolute position in the map
 folium.map.Marker([54.2174, -5.8474],icon=DivIcon(icon_size=(250,50),icon_anchor=(0,0),
@@ -94,7 +143,7 @@ htmls = [html2, html3, html4, html5, html6]
 for myMarker in range(len(x_coordinates)):
     folium.Marker(location=[x_coordinates[myMarker], y_coordinates[myMarker]],
                   tooltip="<h4>Clik here to see the surrounding area</h4>",
-                  popup=htmls[myMarker], icon=folium.Icon(color='red', icon='camera')).add_to(map)
+                  popup=htmls[myMarker], icon=folium.features.CustomIcon('./images/icon_green.png', icon_size=(30,50))).add_to(map)
 
 # color of the marker is red, icon_color is color of the symbol inside the marker - black, glyphicon is set to cutlery
 # adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added
@@ -171,7 +220,7 @@ trail_coordinates = [
     (54.190175, -5.974230),
     (54.209130, -5.999262),
 ]
-folium.PolyLine(trail_coordinates, color='purple', weight='5', opacity=1, tooltip="<h3>Bandy Pad charity walk 12 km</h3>").add_to(map)
+folium.PolyLine(trail_coordinates, color='green', weight='5', opacity=1, tooltip="<h3>Bandy Pad charity walk 12 km</h3>").add_to(map)
 
 # Latitude/longitude popovers -  this can help users to find a geolocation on the map
 my_popup = folium.LatLngPopup()
@@ -186,7 +235,6 @@ plugins.MousePosition(position="topright", separator="  //  ", num_digits=5, pre
 
 # measure control added - check your position during walk and how long do you have to walk to reach another destination
 folium.plugins.MeasureControl(position='topleft', active_color='red', completed_color='red').add_to(map)
-
 
 # control plugin to geolocate the user
 plugins.LocateControl().add_to(map)
