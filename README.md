@@ -1,4 +1,4 @@
-# **Creating HTML WEB MAP using FOLIUM**
+# **Creating web map using FOLIUM**
 ## **Charity walk in Mourne Mountains** 
 
 ### Project Description:
@@ -28,7 +28,7 @@ you will be able to create the map like the one below for your website. You can 
 -	Layer control is set for four base layers and GeoJson files. 
  
  
-<img src="http://github.com/JanaRobbins/scripts-folium/images/walk.jpg" style=" width:60px ; height:60px "  >
+<img src="http://github.com/JanaRobbins/scripts-folium/tree/main/images/walk.jpg" style=" width:60px ; height:60px "  >
 *Image shows an overview of the project (walk.html)*
 
 
