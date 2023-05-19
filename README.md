@@ -1,11 +1,11 @@
 # **Creating HTML WEB MAP using FOLIUM**
 ## **Charity walk in Mourne Mountains** 
 
-## Project Description:
+### Project Description:
 
 you will be able to create the map like the one below for your website. You can use my code for your own project and could change location, data and pictures. Codes and many other features added could be left the same for your map. 
 
-##Table of contents
+### Table of contents
 1. [Map description](#1)
 2. [How to Install and Run the Project](#2)
    1. [Getting started](#2.1) 
@@ -27,10 +27,10 @@ you will be able to create the map like the one below for your website. You can 
 -	Other features you can use for any map – mini map, find my position, zoom, measure control, location coordinates on the map, mouse position, search box, layer control and a full screen button. 
 -	Layer control is set for four base layers and GeoJson files. 
  
-
-![alt text](https://github.com/JanaRobbins/scripts-folium/images/walk.jpg?raw=true)
+ 
+<img src="http://github.com/JanaRobbins/scripts-folium/images/walk.jpg" style=" width:60px ; height:60px "  >
 *Image shows an overview of the project (walk.html)*
-(---)
+
 
 ## **2. How to Install and Run the Project**<a name="2"></a>
 
@@ -53,26 +53,25 @@ dependencies: - python=3.9
               – geopandas 
               - folium 
               – pandas
-(---)
+
 
 ###     3. _Starting Pycharm_<a name="2.3"></a>
 
 Now you need to install [PyCham](https://www.jetbrains.com/pycharm/download/) Community Edition, IDE – Integrated Development Environment to work with your code. In my case I created a location in file folders : Users\user\jana\script-folium. I added an interpreter for your project. In my case this is Conda executable c:\users\user\anaconda3\python.exe and existing environment scripts-folium.
-(---)
+
 
 ## **3.	How to Use the Project**<a name="3"></a>
 
 All data and images for the code could be found in the folder data_files and images were created/taken by the author. 
 If your own data is used for this code, the names should be changed accordingly to your project. 
-(---)
+
 
 ## **4. Credits**<a name="4"></a>
 
 The code was created studying the module Programming for GIS and Remote Sensing in the School of Geography and Environmental Sciences in the [University of Ulster](https://www.ulster.ac.uk/courses/202324/geographic-information-systems-30225).  
-(---)
+
 
 ## **5. Licence**<a name="5"></a>
 
 I am using a MIT licence. I you will use my code, data or images please let me know to my email janarobbins.gis@gmail.com 
 Thank you for looking at my code and work. 
-(---)
