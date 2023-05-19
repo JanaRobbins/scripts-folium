@@ -1,4 +1,4 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/JanaRobbins/scripts-folium?style=plastic)  ![GitHub last commit](https://img.shields.io/github/last-commit/JanaRobbins/scripts-folium?style=plastic) [![GitHub Views](https://komarev.com/ghpvc/?JanaRobbins=natterstefan&color=FAC151)][1]
+![GitHub repo size](https://img.shields.io/github/repo-size/JanaRobbins/scripts-folium?style=plastic)  ![GitHub last commit](https://img.shields.io/github/last-commit/JanaRobbins/scripts-folium?style=plastic) 
 
 
 
@@ -32,7 +32,7 @@ you will be able to create the map like the one below for your website. You can 
 -	Layer control is set for four base layers and GeoJson files. 
  
 
-<img src="https://github.com/JanaRobbins/scripts-folium/blob/main/images/walk.jpg" width="50%" height="50%">
+<img src="https://github.com/JanaRobbins/scripts-folium/blob/main/images/walk.jpg" width="70%" height="70%">
 
 Image shows an overview of the project (walk.html)
 
