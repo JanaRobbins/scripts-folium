@@ -6,10 +6,10 @@ import pandas as pd
 import geopandas as gpd
 
 
-# 1. SECTION YOU CAN CHANGE IN THIS MAP
+# 1. SECTION THAT CAN BE CHANGED IN THIS MAP
 
-# Folium map with a centre of the map in Mourne Mountains, close to Slieve Donard in this example = location, the name set to 'map' (could be any name).
-# Control scale and zoom_control added to the map here – set for True.
+# Folium map with a centre of the map in Mourne Mountains, which is close to Slieve Donard in this example = location, the name set to 'map' (could be any name).
+# Control scale and zoom_control added to the map here – set to True.
 # Start zoom has to be tried to suit the required view, bigger number means more detailed map (14 in this example).
 
 
@@ -27,12 +27,12 @@ folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').ad
 # CSV file for the highest peaks in the area added using panda. Change the file to get your own data.
 df = pd.read_csv("./data_files/peaks.csv")
 
-# Create point geometries using GeoPanda.
+# Created points geometries using GeoPandas.
 
 geometry = gpd.points_from_xy(df.Longitude, df.Latitude)
 geo_df = gpd.GeoDataFrame(df[["Name", "Height", "Irish_Grid","Latitude", "Longitude", "Type"]], geometry=geometry)
 
-# Create a geometry list from the GeoDataFrame.
+# Created a geometry list from the GeoDataFrame.
 geo_df_list = [[point.xy[1][0], point.xy[0][0]] for point in geo_df.geometry]
 
 # Iterate through list and add a marker for each peak, color-coded by its type.
@@ -73,9 +73,11 @@ for coordinates in geo_df_list:
     )
     i = i + 1
 
-# Adding legend for the peaks markers as a floating picture to the top right (number 70 and 91 are percentages from the bottom left).
-
+# Adding a legend for the peaks markers as a floating picture to the top right (number 70 and 91 are percentages from the bottom left).
 plugins.FloatImage('./images/legend_peaks.png', bottom='70',left='91', width='200px').add_to(map)
+
+# Adding a legend for the lines, polygons and GeoJson files
+plugins.FloatImage('./images/legend_all.jpg', bottom='52',left='91', width='200px').add_to(map)
 
 # Adding text to the map - absolute position in the map – DivIcon used.
 
@@ -94,7 +96,7 @@ html1="""
     </p>
     """
 iconstart = folium.features.CustomIcon('./images/Start.png', icon_size=(100,60))
-folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Clik here to see start of the walk</h4>", popup=html1,
+folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Click here to see start of the walk</h4>", popup=html1,
                icon=iconstart).add_to(map)
 
 # Point of interest No.2 – No.6 - HTML style for the description (h3 style apply) and a picture of the area.
@@ -141,7 +143,7 @@ y_coordinates = [-5.912109, -5.927770, -5.945436, -5.962319, -5.974230]
 htmls = [html2, html3, html4, html5, html6]
 
 for myMarker in range(len(x_coordinates)):
-    folium.Marker(location=[x_coordinates[myMarker], y_coordinates[myMarker]],tooltip="<h4>Clik here to see the surrounding area</h4>", popup=htmls[myMarker], icon=folium.features.CustomIcon('./images/icon_green.png', icon_size=(30,50))).add_to(map)
+    folium.Marker(location=[x_coordinates[myMarker], y_coordinates[myMarker]],tooltip="<h4>Click here to see the surrounding area</h4>", popup=htmls[myMarker], icon=folium.features.CustomIcon('./images/icon_green.png', icon_size=(30,50))).add_to(map)
 
 # Adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added.
 
@@ -153,7 +155,7 @@ html7="""
     </p>
     """
 
-# Text FINISH in the html size h2 and bold(=strong) and image added into the popup. Png custom pictures used for an icon.
+# Text FINISH in the html size h2 and bold (=strong) and image added into the popup. Png custom pictures used for an icon.
 
 iconfinish = folium.features.CustomIcon('./images/Finish.png', icon_size=(100,60))
 folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7, icon=iconfinish).add_to(map)
@@ -162,21 +164,22 @@ folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end
 # in popups a column crack_name = climbing location in the Mournes and crack face used, custom icon used – png picture of mountain.
 
 df=pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", tooltip="<h4>Clik here to see the climbing area</h4>",
+popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", tooltip="<h4>Click here to see the climbing area</h4>",
                                                                                  icon=folium.features.CustomIcon('./images/cracks.png', icon_size=(50,50))).add_to(map), axis=1)
-# Importing csv file (parking_all from data_files folder), custom icon used – png picture of parkings. A small anonymus function lambda is used here again.
+
+# Importing csv file (parking_all from data_files folder), custom icon used – png picture of parkings. A small anonymous function lambda is used here again.
 
 pd.read_csv("./data_files/parking_all.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row["parking_name"] + "</h3>", tooltip="<h4>Clik here to see parking name</h4>",
+popup="<h3>" + row["parking_name"] + "</h3>", tooltip="<h4>Click here to see parking name</h4>",
                                                                            icon=folium.features.CustomIcon('./images/parking.png', icon_size=(50,50))).add_to(map), axis=1)
 
-# Mourne Wall GeojJson polygon added from the folder data_files, style of the line set to yellow with the filling colour transparent = none.
+# Mourne Wall GeoJson polygon added from the folder data_files, style of the line set to yellow with the filling colour transparent = none.
 
 Mourne_wall = f"data_files/wall.geojson"
 style1={'fillColor':'none','color':'yellow', 'weight':'6', 'fillOpacity':'0.8'}
 folium.GeoJson(Mourne_wall, name="Mourne Wall", style_function=lambda x:style1,  tooltip="<h3>Mourne Wall</h3>").add_to(map)
 
-# Mourne paths GeoJson Linestring added, style1 applied, style of the paths set to pink.
+# Mourne paths GeoJson LineString added, style1 applied, style of the paths set to pink.
 
 Mourne_paths = f"data_files/paths_all.geojson"
 style2={'fillColor':'none','color':'purple', 'weight':'1.2', 'fillOpacity':'0.8'}
@@ -212,7 +215,7 @@ plugins.MousePosition(position="topright", separator="  //  ", num_digits=5, pre
 # Measure control added - check your position during walk and how long do you have to walk to reach another destination.
 folium.plugins.MeasureControl(position='topleft', active_color='red', completed_color='red').add_to(map)
 
-# Control plugin to geolocate the user - check your position during the walk!!!
+# Control plugin to locate the user - check your position during the walk!!!
 plugins.LocateControl().add_to(map)
 
 # Adding a floating image in HTML canvas on bottom left of the map with **kwargs - additional keyword argument as CSS properties – your logo can be here.
@@ -221,7 +224,7 @@ plugins.FloatImage('./images/j.png', bottom=6,left=1, width='60px').add_to(map)
 # Full screen button in the map.
 plugins.Fullscreen(force_separate_button=True, title='Click here to see Full Screen').add_to(map)
 
-# Adding Mini Map to the map - right bottom corner.
+# Adding Mini Map to the map - bottom right corner.
 plugins.MiniMap(width='300',height='300').add_to(map)
 
 # A search box was added.
