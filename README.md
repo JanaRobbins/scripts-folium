@@ -7,7 +7,7 @@
 
 ### Project Description:
 
-you will be able to create the map like the one below for your website. You can use my code for your own project and could change location, data and pictures. Codes and many other features added could be left the same for your map. 
+Creating a web map for a 12 km charity walk. If you fork my repository you will be able to create similar map like the one below for your website. You can use my code for your own project and could change location, data and pictures. Codes and many other features added could be left the same for your map. 
 
 ### Table of contents
 1. [Map description](#1)
