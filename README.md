@@ -27,17 +27,17 @@ you will be able to create the map like the one below for your website. You can 
 -	Other features you can use for any map – mini map, find my position, zoom, measure control, location coordinates on the map, mouse position, search box, layer control and a full screen button. 
 -	Layer control is set for four base layers and GeoJson files. 
  
- ![Walk](/scripts-folium/tree/main/images/walk.jpg?raw=true "Final web map")
+![Walk](/scripts-folium/images/walk.jpg?raw=true "Final web map")
 Image shows an overview of the project (walk.html)
 
 
 ## **2. How to Install and Run the Project**<a name="2"></a>
 
-###     1. _Getting started_<a name="2.1"></a>
+###     i. _Getting started_<a name="2.1"></a>
 
 To be able to share or download any code a [GitHub](https://github.com/) account is needed, [git](https://git-scm.com/downloads), command-line interface (GitHub, Inc. 2023) and  [Conda/Anaconda](https://docs.anaconda.com/anaconda/install/) (open-source package management system) installed.  
 
-###     2. _Create a conda environment_<a name="2.2"></a>
+###     ii. _Create a conda environment_<a name="2.2"></a>
 
 To be able to push (upload) or pull (download) changes to and from remote repositories a graphical user interface [GitHub Desktop](https://desktop.github.com/) has to be installed to work with git and GitHub. 
 A code could now be forked to your repository - GitHub - JanaRobbins/scripts-folium: A script for an interactive map using Folium and saved as HTML file - [https://github.com/JanaRobbins/scripts-folium](https://github.com/JanaRobbins/scripts-folium).
@@ -54,7 +54,7 @@ dependencies: - python=3.9
               – pandas
 
 
-###     3. _Starting Pycharm_<a name="2.3"></a>
+###     iii. _Starting Pycharm_<a name="2.3"></a>
 
 Now you need to install [PyCham](https://www.jetbrains.com/pycharm/download/) Community Edition, IDE – Integrated Development Environment to work with your code. In my case I created a location in file folders : Users\user\jana\script-folium. I added an interpreter for your project. In my case this is Conda executable c:\users\user\anaconda3\python.exe and existing environment scripts-folium.
 
