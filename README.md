@@ -27,7 +27,8 @@ you will be able to create the map like the one below for your website. You can 
 -	Other features you can use for any map – mini map, find my position, zoom, measure control, location coordinates on the map, mouse position, search box, layer control and a full screen button. 
 -	Layer control is set for four base layers and GeoJson files. 
  
-![Walk](/scripts-folium/images/walk.jpg?raw=true "Final web map")
+![Walk](/scripts-folium/blob/main/images/walk.jpg?raw=true "Final web map")
+<img src="https://github.com/JanaRobbins/scripts-folium/blob/main/images/walk.jpg" width="50%" height="50%">
 Image shows an overview of the project (walk.html)
 
 
@@ -74,3 +75,5 @@ The code was created studying the module Programming for GIS and Remote Sensing 
 
 I am using a MIT licence. I you will use my code, data or images please let me know to my email janarobbins.gis@gmail.com 
 Thank you for looking at my code and work. 
+
+![GitHub repo size](https://img.shields.io/github/repo-size/JanaRobbins/scripts-folium?style=plastic) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JanaRobbins/skripts-folium?style=plastic) ![GitHub last commit](https://img.shields.io/github/last-commit/JanaRobbins/scripts-folium?style=plastic) 
