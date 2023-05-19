@@ -27,9 +27,8 @@ you will be able to create the map like the one below for your website. You can 
 -	Other features you can use for any map – mini map, find my position, zoom, measure control, location coordinates on the map, mouse position, search box, layer control and a full screen button. 
 -	Layer control is set for four base layers and GeoJson files. 
  
- 
-<img src="http://github.com/JanaRobbins/scripts-folium/tree/main/images/walk.jpg" style=" width:300px ; height:300px "  >
-*Image shows an overview of the project (walk.html)*
+ ![Walk](/scripts-folium/tree/main/images/walk.jpg?raw=true "Final web map")
+Image shows an overview of the project (walk.html)
 
 
 ## **2. How to Install and Run the Project**<a name="2"></a>
