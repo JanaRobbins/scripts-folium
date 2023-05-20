@@ -1,4 +1,4 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/JanaRobbins/scripts-folium?style=plastic)  ![GitHub last commit](https://img.shields.io/github/last-commit/JanaRobbins/scripts-folium?style=plastic) 
+![GitHub repo size](https://img.shields.io/github/repo-size/JanaRobbins/scripts-folium?style=plastic)  ![GitHub last commit](https://img.shields.io/github/last-commit/JanaRobbins/scripts-folium?style=plastic) ![GitHub watchers](https://img.shields.io/github/watchers/JanaRobbins/scripts-folium?style=plastic) ![GitHub repo directory count](https://img.shields.io/github/directory-file-count/JanaRobbins/scripts-folium?style=plastic)
 
 
 
