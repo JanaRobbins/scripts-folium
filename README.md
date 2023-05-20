@@ -7,7 +7,7 @@
 
 ### Project Description:
 
-Creating a web map for a 12 km charity walk. If you fork my repository you will be able to create similar map like the one below for your website. You can use my code for your own project and could change location, data and pictures. Codes and many other features added could be left the same for your map. 
+The code will create a web map for a 12 km charity walk in Mourne Mountains. If you fork my repository you will be able to create similar map like the one below for your website. You can use my code for your own project and could change location, data and pictures. Codes and many other features added could be left the same for your map. 
 
 ### Table of contents
 1. [Map description](#1)
@@ -67,13 +67,13 @@ Now you need to install [PyCham](https://www.jetbrains.com/pycharm/download/) Co
 
 ## **3.	How to Use the Project**<a name="3"></a>
 
-All data and images for the code could be found in the folder data_files and images were created/taken by the author. 
+All data and images for the code could be found in the folder data_files and images and were created/taken by the author. 
 If your own data is used for this code, the names should be changed accordingly to your project. 
 
 
 ## **4. Credits**<a name="4"></a>
 
-The code was created studying the module Programming for GIS and Remote Sensing in the School of Geography and Environmental Sciences in the [University of Ulster](https://www.ulster.ac.uk/courses/202324/geographic-information-systems-30225).  
+The code was created duringnstudying the module Programming for GIS and Remote Sensing in the School of Geography and Environmental Sciences in the [University of Ulster](https://www.ulster.ac.uk/courses/202324/geographic-information-systems-30225).  
 
 
 ## **5. Licence**<a name="5"></a>
