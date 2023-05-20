@@ -52,12 +52,12 @@ Open GitHub and you will be able to have it on your computer this should be now 
 Setting up [Conda/Anaconda](https://docs.anaconda.com/anaconda/install/) , open-source package management system using command line CLI and GUI.  
 Copy environment.yml, change it if needed in Notepad++ the name is now scripts-folium, list of chanels could be the same and dependencies can be extended.  
 
-name: scripts-folium
-channels: - conda-forge - defaults
-dependencies: - python=3.9 
-              – geopandas 
-              - folium 
-              – pandas
+- name: scripts-folium
+- channels: - conda-forge - defaults
+- dependencies: - python=3.9 
+                – geopandas 
+                - folium 
+                – pandas
 
 
 ###     iii. _Starting Pycharm_<a name="2.3"></a>
@@ -78,7 +78,7 @@ The code was created duringnstudying the module Programming for GIS and Remote S
 
 ## **5. Licence**<a name="5"></a>
 
-I am using a MIT licence. I you will use my code, data or images please let me know to my email janarobbins.gis@gmail.com 
+I am using a MIT licence. If you will use my code, data or images please let me know to my email janarobbins.gis@gmail.com 
 Thank you for looking at my code and work. 
 
  
