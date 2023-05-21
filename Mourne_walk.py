@@ -14,7 +14,7 @@ import geopandas as gpd
 
 
 map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
-                 zoom_start=14, zoom_control=True, tiles='Open Street Map', name='Open Street Map')
+                 zoom_start=13.6, zoom_control=True, tiles='Open Street Map', name='Open Street Map')
 
 # Default tiles are OpenStreetMap, but you can use Stamen Terrain, Stamen Toner, Stamen Watercolor, cartodbpositron, cartodbdark_matter without any restriction.
 # With API key - Mapbox Bright, Mapbox Control Room, Cloudmade, Bing, Google and Thunderforest can be added.
@@ -74,15 +74,15 @@ for coordinates in geo_df_list:
     i = i + 1
 
 # Adding a legend for the peaks markers as a floating picture to the top right (number 70 and 91 are percentages from the bottom left).
-plugins.FloatImage('./images/legend_peaks.png', bottom='70',left='91', width='200px').add_to(map)
+plugins.FloatImage('./images/legend_peaks.png', bottom='55',left='91', width='200px').add_to(map)
 
 # Adding a legend for the lines, polygons and GeoJson files
-plugins.FloatImage('./images/legend_map.png', bottom='52',left='91', width='200px').add_to(map)
+plugins.FloatImage('./images/legend_map.png', bottom='31',left='91', width='200px').add_to(map)
 
 # Adding text to the map - absolute position in the map – DivIcon used.
 
 folium.map.Marker([54.2174, -5.8474],icon=DivIcon(icon_size=(250,50),icon_anchor=(0,0),
-html='<div style="font-size: 25pt">12 km charity walk</div>',)).add_to(map)
+html='<div style="font-size: 25pt">12 km charity walk</div>')).add_to(map)
 
 
 #POINTS OF INTEREST ON THE WAY - Brandy Pad - NO 1 - 7 (Bloody Bridge Car Park to Meelmore Lodge)
@@ -99,51 +99,19 @@ iconstart = folium.features.CustomIcon('./images/Start.png', icon_size=(100,60))
 folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Click here to see start of the walk</h4>", popup=html1,
                icon=iconstart).add_to(map)
 
-# Point of interest No.2 – No.6 - HTML style for the description (h3 style apply) and a picture of the area.
+# Point of interest No.2 – No.6 - HTML style for the description and a picture of the area. read from the file popup26.csv
 
-html2="""
-    <h3>Walk up to Crannoge Quarry</h3><br/>
-    <p>
-    <img src="images/quarry.jpg" alt="Crannoge Quarry">
-    </p>
-    """
+marker_df=pd.read_csv('./data_files/popup26.csv')
+for i in range(len(marker_df)):
+    latitude=marker_df.loc[i]["latitude"]
+    longitude=marker_df.loc[i]["longitude"]
+    title=marker_df.loc[i]["title"]
+    text=marker_df.loc[i]["text"]
+    img_src=marker_df.loc[i]["img_src"]
+    alt=marker_df.loc[i]["alt"]
 
-html3="""
-    <h3>Climb over Mourne Wall at Bog of Slieve Donard</h3><br/><h4>The hardest part done</h4><br/>
-    <p>
-    <img src="images/BogOfDonard.jpg" alt="Bog of Donard">
-    </p>
-    """
-
-html4="""
-    <h3>Walk under the Castles</h3><br/><h4>You can walk using Brandy Pad - smugglers crossing way over the mountain</h4><br/>
-    <p>
-    <img src="images/Castles.jpg" alt="The Castles">
-    </p>
-    """
-
-html5="""
-    <h3>Enjoy Ben Crom Reservoir view</h3><br/><h4>Enjoy the final part before walking down the hill</h4><br/>
-    <p>
-    <img src="images/BenCrom.jpg" alt="Ben Crom reservoir view">
-    </p>
-    """
-
-html6="""
-    <h3>Reaching Hares Gap walk down the hill</h3><br/><h4>Cross over the Mourne Wall for the second time</h4><br/>
-    <p>
-    <img src="images/HaresGap.jpg" alt="Hares Gap">
-    </p>
-    """
-
-# Cycling through all the points of interest.
-
-x_coordinates = [54.170992, 54.172241, 54.182497, 54.188887, 54.190175]
-y_coordinates = [-5.912109, -5.927770, -5.945436, -5.962319, -5.974230]
-htmls = [html2, html3, html4, html5, html6]
-
-for myMarker in range(len(x_coordinates)):
-    folium.Marker(location=[x_coordinates[myMarker], y_coordinates[myMarker]],tooltip="<h4>Click here to see the surrounding area</h4>", popup=htmls[myMarker], icon=folium.features.CustomIcon('./images/icon_green.png', icon_size=(30,50))).add_to(map)
+    html="<h3>" + title + "</h3><br/><h4>" + text + "</h4><br/><p><img src=" + "'"+ img_src + "'" + "alt=" + alt +"></p>"
+    folium.Marker(location=[latitude,longitude], tooltip="<h4>Click here to see the surrounding area</h4>", popup=html, icon=folium.features.CustomIcon('./images/icon_green.png', icon_size=(30,50))).add_to(map)
 
 # Adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added.
 
