@@ -77,7 +77,7 @@ for coordinates in geo_df_list:
 plugins.FloatImage('./images/legend_peaks.png', bottom='70',left='91', width='200px').add_to(map)
 
 # Adding a legend for the lines, polygons and GeoJson files
-plugins.FloatImage('./images/legend_all.jpg', bottom='52',left='91', width='200px').add_to(map)
+plugins.FloatImage('./images/legend_map.png', bottom='52',left='91', width='200px').add_to(map)
 
 # Adding text to the map - absolute position in the map – DivIcon used.
 
