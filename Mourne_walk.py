@@ -1,4 +1,4 @@
-# imported Python libraries
+# import Python libraries
 import folium
 from folium import plugins
 from folium.features import DivIcon
@@ -24,6 +24,7 @@ folium.raster_layers.TileLayer('Stamen Toner', name='Stamen Toner').add_to(map)
 folium.raster_layers.TileLayer('Stamen Watercolor', name='Stamen Watercolor').add_to(map)
 #TODO:add another layers with API key, Google, Bing, Tunderforest
 
+# 27-74 line: PEAKS MARKERS
 # CSV file for the highest peaks in the area added using panda. Change the file to get your own data.
 df = pd.read_csv("./data_files/peaks.csv")
 
@@ -85,7 +86,7 @@ folium.map.Marker([54.2174, -5.8474],icon=DivIcon(icon_size=(250,50),icon_anchor
 html='<div style="font-size: 25pt">12 km charity walk</div>')).add_to(map)
 
 
-#POINTS OF INTEREST ON THE WAY - Brandy Pad - NO 1 - 7 (Bloody Bridge Car Park to Meelmore Lodge)
+# lines 88-130: POINTS OF INTEREST ON THE WAY - Brandy Pad - NO 1 - 7 (Bloody Bridge Car Park to Meelmore Lodge)
 
 #No.1 -adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, pictures added, html styles apply.
 
@@ -132,7 +133,7 @@ folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end
 # in popups a column crack_name = climbing location in the Mournes and crack face used, custom icon used – png picture of mountain.
 
 df=pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>", tooltip="<h4>Click here to see the climbing area</h4>",
+popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>" , tooltip="<h4>Click here to see the climbing area</h4>",
                                                                                  icon=folium.features.CustomIcon('./images/cracks.png', icon_size=(50,50))).add_to(map), axis=1)
 
 # Importing csv file (parking_all from data_files folder), custom icon used – png picture of parkings. A small anonymous function lambda is used here again.
