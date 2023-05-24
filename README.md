@@ -16,8 +16,9 @@ The code will create a web map for a 12 km charity walk in Mourne Mountains. If 
    2. [Create a Conda environment](#2.2)
    3. [Starting Pycharm](#2.3)
 3. [How to Use the Project](#3)
-4. [Credits](#4)
-5. [Licence](#5)
+4. [Adding the code into the real website}(#4)
+5. [Credits](#5)
+6. [Licence](#6)
 
 
 
@@ -70,12 +71,28 @@ Now you need to install [PyCham](https://www.jetbrains.com/pycharm/download/) Co
 All data and images for the code could be found in the folder 'data_files' and 'images' that were created nd taken by the author. 
 If your own data is used for this code, the names should be changed accordingly to your project. 
 
+## **4. Adding the code into the real website**<a name="4"></a>
 
-## **4. Credits**<a name="4"></a>
+The code created for the file Mourne_walk.py is saved into walk.html file. 
+This file is ready to be used in the real website. Place the code into the body section in the place where map should appear and the rest of the code are placed after the </body> tag. 
+
+<!DOCTYPE html>
+<html>
+<head>
+**<script> <style> and <link> for the map***
+</head>
+<body>
+**<div class="folium-map" id="map_11bb66f436a35a89aa8cad157e5e4d09" ></div>**
+</body>
+**<script>**
+**</script>**
+</html>
+
+## **5. Credits**<a name="5"></a>
 
 The code was created during the study of the module Programming for GIS and Remote Sensing in the School of Geography and Environmental Sciences in the [University of Ulster](https://www.ulster.ac.uk/courses/202324/geographic-information-systems-30225).  
 
 
-## **5. Licence**<a name="5"></a>
+## **6. Licence**<a name="6"></a>
 
 A MIT licence was used. To use this code, data and or images please contact the author at janarobbins.gis@gmail.com 
