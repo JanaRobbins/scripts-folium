@@ -16,7 +16,7 @@ The code will create a web map for a 12 km charity walk in Mourne Mountains. If 
    2. [Create a Conda environment](#2.2)
    3. [Starting Pycharm](#2.3)
 3. [How to Use the Project](#3)
-4. [Adding the code into the real website](#4)
+4. [Adding the map into a real website](#4)
 5. [Credits](#5)
 6. [Licence](#6)
 
@@ -71,22 +71,22 @@ Now you need to install [PyCham](https://www.jetbrains.com/pycharm/download/) Co
 All data and images for the code could be found in the folder 'data_files' and 'images' that were created nd taken by the author. 
 If your own data is used for this code, the names should be changed accordingly to your project. 
 
-## **4. Adding the code into the real website**<a name="4"></a>
+## **4. Adding the map into a real website**<a name="4"></a>
 
 The code created for the file Mourne_walk.py is saved into walk.html file. 
-This file is ready to be used in the real website. Place the code into the body section in the place where map should appear and the rest of the code are placed after the </body> tag. 
+This file is ready to be used in a real website. Place your code into walk html or copy and past the code from walk.html into your own html page.  
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-<!-- copy here script, styles and link from the walk.html file from the head -->
+<!-- copy the script, styles and link here from the walk.html file from the head section -->
 </head>
 <body>
 <!-- copy here div class from the body part -->
 <div class="folium-map" id="map_11bb66f436a35a89aa8cad157e5e4d09" ></div>
 </body>
-<!-- copy here script from the part between </body> and </html> -->
+<!-- copy here the script from the part between </body> and </html> -->
 <script>
 </script>
 </html>
