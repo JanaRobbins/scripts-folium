@@ -77,17 +77,19 @@ The code created for the file Mourne_walk.py is saved into walk.html file.
 This file is ready to be used in the real website. Place the code into the body section in the place where map should appear and the rest of the code are placed after the </body> tag. 
 
 ```html
-<!DOCTYPE html>;
-<html>;
-<head>;
-**<script> <style> and <link> for the map***;
-</head>;
-<body>;
-**<div class="folium-map" id="map_11bb66f436a35a89aa8cad157e5e4d09" ></div>**;
-</body>;
-**<script>**;
-**</script>**;
-</html>;
+<!DOCTYPE html>
+<html>
+<head>
+<!-- copy here script, styles and link from the walk.html file from the head -->
+</head>
+<body>
+<!-- copy here div class from the body part -->
+<div class="folium-map" id="map_11bb66f436a35a89aa8cad157e5e4d09" ></div>
+</body>
+<!-- copy here script from the part between </body> and </html> -->
+<script>
+</script>
+</html>
 ```
 
 ## **5. Credits**<a name="5"></a>
