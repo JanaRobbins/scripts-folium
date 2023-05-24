@@ -16,7 +16,7 @@ The code will create a web map for a 12 km charity walk in Mourne Mountains. If 
    2. [Create a Conda environment](#2.2)
    3. [Starting Pycharm](#2.3)
 3. [How to Use the Project](#3)
-4. [Adding the code into the real website}(#4)
+4. [Adding the code into the real website](#4)
 5. [Credits](#5)
 6. [Licence](#6)
 
@@ -76,17 +76,19 @@ If your own data is used for this code, the names should be changed accordingly 
 The code created for the file Mourne_walk.py is saved into walk.html file. 
 This file is ready to be used in the real website. Place the code into the body section in the place where map should appear and the rest of the code are placed after the </body> tag. 
 
-<!DOCTYPE html>
-<html>
-<head>
-**<script> <style> and <link> for the map***
-</head>
-<body>
-**<div class="folium-map" id="map_11bb66f436a35a89aa8cad157e5e4d09" ></div>**
-</body>
-**<script>**
-**</script>**
-</html>
+```html
+<!DOCTYPE html>;
+<html>;
+<head>;
+**<script> <style> and <link> for the map***;
+</head>;
+<body>;
+**<div class="folium-map" id="map_11bb66f436a35a89aa8cad157e5e4d09" ></div>**;
+</body>;
+**<script>**;
+**</script>**;
+</html>;
+```
 
 ## **5. Credits**<a name="5"></a>
 
