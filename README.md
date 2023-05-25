@@ -50,7 +50,7 @@ To be able to push (upload) or pull (download) changes to and from remote reposi
 A code could now be forked to your repository - [GitHub - JanaRobbins/scripts-folium](https://github.com/JanaRobbins/scripts-folium).
 
 Open GitHub and you will be able to have it on your computer, this should now be cloned (downloaded) to your computer and created a local version and it will show as JanaRobbins/scripts-folium. You can use a Command Prompt – cd c:\Users\user\name_for_projects than adding a git clone https://github.com/your_username_in_GitHub/scripts_folium.git  
-Setting up [Conda/Anaconda](https://docs.anaconda.com/anaconda/install/), an open-source package management system using command line CLI and GUI.  
+Setting up [Conda/Anaconda](https://docs.anaconda.com/anaconda/install/), an open-source package management system using command line CLI and GUI, as a next.  
 Copy environment.yml, change it if needed in Notepad++ the name is now scripts-folium, a list of channels could be the same and dependencies could be extended.  
 
 - name: scripts-folium
