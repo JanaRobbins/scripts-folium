@@ -4,7 +4,7 @@ from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
 import geopandas as gpd
-
+import branca
 
 # 1. SECTION THAT CAN BE CHANGED IN THIS MAP
 
@@ -13,7 +13,7 @@ import geopandas as gpd
 # Start zoom has to be tried to suit the required view, bigger number means more detailed map (14 in this example).
 
 
-map = folium.Map(location=[54.184431, -5.941592], control_scale='true', width='100%', left='0%', top='0%', height='100%',
+map = folium.Map(location=[54.184431, -5.941592], control_scale=True, width='100%', left='0%', top='0%', height='100%',
                  zoom_start=13.6, zoom_control=True, tiles='Open Street Map', name='Open Street Map')
 
 # Default tiles are OpenStreetMap, but you can use Stamen Terrain, Stamen Toner, Stamen Watercolor, cartodbpositron, cartodbdark_matter without any restriction.
@@ -112,7 +112,7 @@ for i in range(len(marker_df)):
     alt=marker_df.loc[i]["alt"]
 
     html="<h3>" + title + "</h3><br/><h4>" + text + "</h4><br/><p><img src=" + "'"+ img_src + "'" + "alt=" + alt +"></p>"
-    folium.Marker(location=[latitude,longitude], tooltip="<h4>Click here to see the surrounding area</h4>", popup=html, icon=folium.features.CustomIcon('./images/icon_green.png', icon_size=(30,50))).add_to(map)
+    folium.Marker(location=[latitude,longitude], tooltip="<h4>Click here to see the surrounding area</h4>", popup=html, width=500, icon=folium.features.CustomIcon('./images/icon_green.png', icon_size=(30,50))).add_to(map)
 
 # Adding url to this marker popup, this will open Meelmore Lodge in a new web window, picture added.
 
@@ -133,7 +133,7 @@ folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end
 # in popups a column crack_name = climbing location in the Mournes and crack face used, custom icon used – png picture of mountain.
 
 df=pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>" , tooltip="<h4>Click here to see the climbing area</h4>",
+popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>"+ "<h3>", tooltip="<h4>Click here to see the climbing area</h4>",
                                                                                  icon=folium.features.CustomIcon('./images/cracks.png', icon_size=(50,50))).add_to(map), axis=1)
 
 # Importing csv file (parking_all from data_files folder), custom icon used – png picture of parkings. A small anonymous function lambda is used here again.

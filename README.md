@@ -1,4 +1,4 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/JanaRobbins/scripts-folium?style=plastic)  ![GitHub last commit](https://img.shields.io/github/last-commit/JanaRobbins/scripts-folium?style=plastic) ![GitHub watchers](https://img.shields.io/github/watchers/JanaRobbins/scripts-folium?style=plastic) ![GitHub repo directory count](https://img.shields.io/github/directory-file-count/JanaRobbins/scripts-folium?style=plastic)
+![GitHub repo size](https://img.shields.io/github/repo-size/JanaRobbins/scripts-folium?style=plastic)  ![GitHub last commit](https://img.shields.io/github/last-commit/JanaRobbins/scripts-folium?style=plastic) ![GitHub watchers](https://img.shields.io/github/watchers/JanaRobbins/scripts-folium?style=plastic) ![GitHub repo directory count](https://img.shields.io/github/directory-file-count/JanaRobbins/scripts-folium?style=plastic) ![Lines of code](https://img.shields.io/tokei/lines/github/JanaRobbins/scripts-folium?style=plastic) [![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FJanaRobbins%2Fscripts-folium&label=Visitors%20&labelColor=%23697689&countColor=%23ba68c8&style=plastic)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FJanaRobbins%2Fscripts-folium) ![Website](https://img.shields.io/website?down_message=offline&style=plastic&up_color=red&up_message=using%20this%20map&url=https%3A%2F%2Fjanarobbins.github.io%2Fmourneswalks%2Findex.html) 
 
 
 
@@ -16,7 +16,7 @@ The code will create a web map for a 12 km charity walk in Mourne Mountains. If 
    2. [Create a Conda environment](#2.2)
    3. [Starting Pycharm](#2.3)
 3. [How to Use the Project](#3)
-4. [Adding the map into a real website](#4)
+4. [Adding the Map into a Real Website](#4)
 5. [Credits](#5)
 6. [Licence](#6)
 
@@ -71,7 +71,7 @@ Now you need to install [PyCham](https://www.jetbrains.com/pycharm/download/) Co
 All data and images for the code could be found in the folder 'data_files' and 'images' that were created nd taken by the author. 
 If your own data is used for this code, the names should be changed accordingly to your project. 
 
-## **4. Adding the map into a real website**<a name="4"></a>
+## **4. Adding the Map into a Real Website**<a name="4"></a>
 
 The code created for the file Mourne_walk.py is saved into walk.html file. 
 This file is ready to be used in a real website. Place your code into walk html or copy and past the code from walk.html into your own html page.  
