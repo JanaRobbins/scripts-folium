@@ -124,7 +124,7 @@ html7="""
     </p>
     """
 
-# Text FINISH in the html size h2 and bold (=strong) and image added into the popup. Png custom pictures used for an icon.
+# Text FINISH in the html size h2 and bold (=strong) and image added into the popup. Png custom picture used for an icon.
 
 iconfinish = folium.features.CustomIcon('./images/Finish.png', icon_size=(100,60))
 folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end of the walk</h4>", popup=html7, icon=iconfinish).add_to(map)
@@ -148,7 +148,7 @@ Mourne_wall = f"data_files/wall.geojson"
 style1={'fillColor':'none','color':'yellow', 'weight':'6', 'fillOpacity':'0.8'}
 folium.GeoJson(Mourne_wall, name="Mourne Wall", style_function=lambda x:style1,  tooltip="<h3>Mourne Wall</h3>").add_to(map)
 
-# Mourne paths GeoJson LineString added, style1 applied, style of the paths set to pink.
+# Mourne paths GeoJson LineString added, style1 applied, style of the paths set to purple.
 
 Mourne_paths = f"data_files/paths_all.geojson"
 style2={'fillColor':'none','color':'purple', 'weight':'1.2', 'fillOpacity':'0.8'}
