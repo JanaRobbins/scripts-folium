@@ -4,7 +4,6 @@ from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
 import geopandas as gpd
-import branca
 
 # 1. SECTION THAT CAN BE CHANGED IN THIS MAP
 
@@ -91,11 +90,12 @@ html='<div style="font-size: 25pt">12 km charity walk</div>')).add_to(map)
 #No.1 -adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, pictures added, html styles apply.
 
 html1="""
-    <h2><strong>START OF THE WALK<strong></h2><br><h3>Bloody Bridge Car Park</h3>"
+    <h2><strong>START OF THE WALK<strong></h2><br><h3>Bloody Bridge Car Park</h3>
     <p>
     <img src="images/BloodyBridge.jpg" alt="Bloody Bridge car park">
     </p>
     """
+
 iconstart = folium.features.CustomIcon('./images/Start.png', icon_size=(100,60))
 folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Click here to see start of the walk</h4>", popup=html1,
                icon=iconstart).add_to(map)
@@ -133,7 +133,7 @@ folium.Marker(location=[54.209130, -5.999262], tooltip="<h4>Clik here to see end
 # in popups a column crack_name = climbing location in the Mournes and crack face used, custom icon used – png picture of mountain.
 
 df=pd.read_csv("./data_files/cracks_heading.csv").apply(lambda row:folium.Marker(location=[row["latitude"], row["longitude"]],
-popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" +"<h4>" + "orientation" + "</h4>"+ "<h3>", tooltip="<h4>Click here to see the climbing area</h4>",
+popup="<h3>" + row['crack_name'] + "</h3>" + '' +"<h4>" + row['crack_faces'] + "</h4>" + "<h4>" + "orientation" + "</h4>", tooltip="<h4>Click here to see the climbing area</h4>",
                                                                                  icon=folium.features.CustomIcon('./images/cracks.png', icon_size=(50,50))).add_to(map), axis=1)
 
 # Importing csv file (parking_all from data_files folder), custom icon used – png picture of parkings. A small anonymous function lambda is used here again.
