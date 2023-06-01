@@ -4,6 +4,7 @@ from folium import plugins
 from folium.features import DivIcon
 import pandas as pd
 import geopandas as gpd
+import base64
 
 # 1. SECTION THAT CAN BE CHANGED IN THIS MAP
 
@@ -89,16 +90,24 @@ html='<div style="font-size: 25pt">12 km charity walk</div>')).add_to(map)
 
 #No.1 -adding custom pop up markers - Parking in this map, location lat, long and popup with the required name, pictures added, html styles apply.
 
-html1="""
-    <h2><strong>START OF THE WALK<strong></h2><br><h3>Bloody Bridge Car Park</h3>
-    <p>
-    <img src="images/BloodyBridge.jpg" alt="Bloody Bridge car park">
-    </p>
-    """
+#html1="""
+   # <h2><strong>START OF THE WALK<strong></h2><br><h3>Bloody Bridge Car Park</h3>
+    #<p>
+   # <img src="images/BloodyBridge.jpg" alt="Bloody Bridge car park">
+   # </p>
+    #"""
+
+jpg='images/BloodyBridge.jpg'.format()
+encoded=base64.b64encode(open(jpg, 'rb').read()).decode()
+html='<img src="data:images/jpeg;base64,{}" style="width:300px; height:400px;>'.format
+iframe=folium.IFrame(html(encoded), width=350, height=450)
+popup=folium.Popup(iframe, max_width=1500)
 
 iconstart = folium.features.CustomIcon('./images/Start.png', icon_size=(100,60))
-folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Click here to see start of the walk</h4>", popup=html1,
+folium.Marker (location=[54.174232, -5.873921], tooltip="<h4>Click here to see start of the walk</h4>", popup=popup,
                icon=iconstart).add_to(map)
+
+map.add_child(iconstart)
 
 # Point of interest No.2 – No.6 - HTML style for the description and a picture of the area. read from the file popup26.csv
 

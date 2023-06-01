@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ca8f7d14-713a-4f04-b1d6-3ca614aaaaa2" name="Changes" comment="creating the map with centre in the Mourne">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mourne_walk.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mourne_walk.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/walk.html" beforeDir="false" afterPath="$PROJECT_DIR$/walk.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
