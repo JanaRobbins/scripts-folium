@@ -191,7 +191,8 @@ fmtr = "function(num) {return L.Util.formatNum(num, 4) + ' º ';};"
 plugins.MousePosition(position="topright", separator="  //  ", num_digits=5, prefix="<h3>"+"Coordinates:"+"</h3>", lat_formatter=fmtr, lng_formatter=fmtr).add_to(map)
 
 # Measure control added - check your position during walk and how long do you have to walk to reach another destination.
-folium.plugins.MeasureControl(position='topleft', active_color='red', completed_color='red').add_to(map)
+# This measurement is not working
+# folium.plugins.MeasureControl(position='topleft', active_color='red', completed_color='red').add_to(map)
 
 # Control plugin to locate the user - check your position during the walk!!!
 plugins.LocateControl().add_to(map)
