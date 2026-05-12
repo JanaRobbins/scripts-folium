@@ -147,41 +147,52 @@ folium.raster_layers.TileLayer(
 ).add_to(walk_map)
 
 
-# PEAK MARKERS
-peaks_df = pd.read_csv("./data_files/peaks.csv")
-
-geometry = gpd.points_from_xy(peaks_df.Longitude, peaks_df.Latitude)
-
-geo_df = gpd.GeoDataFrame(
-    peaks_df[
-        ["Name", "Height", "Irish_Grid", "Latitude", "Longitude", "Type"]
-    ],
-    geometry=geometry
-)
-
-geo_df_list = [
-    [point.xy[1][0], point.xy[0][0]]
-    for point in geo_df.geometry
-]
-
+# Iterate through list and add a marker for each peak,
+# colour-coded by its type.
 for i, coordinates in enumerate(geo_df_list):
 
-    type_color = get_peak_colour(geo_df.Type[i])
+    # Assign a colour marker for the type of peak,
+    # by the column ‘Type’.
+    type_color = get_peak_colour(
+        geo_df.Type[i]
+    )
 
+    # Larger popup content for peaks.
     popup_html = f"""
-    Name: {geo_df.Name[i]}
-    <br><br>
+    <div style="width:500px;">
+
+    <h2>{geo_df.Name[i]}</h2>
+
+    <h3>
     Height: {geo_df.Height[i]}
-    <br><br>
-    Irish Grid: {geo_df.Irish_Grid[i]}
-    <br><br>
-    Coordinates: {geo_df_list[i]}
+    </h3>
+
+    <h3>
+    Irish Grid:
+    {geo_df.Irish_Grid[i]}
+    </h3>
+
+    <h3>
+    Coordinates:
+    {geo_df_list[i]}
+    </h3>
+
+    </div>
     """
 
     folium.Marker(
+
         location=coordinates,
-        popup=folium.Popup(popup_html, max_width=400),
-        icon=folium.Icon(color=type_color)
+
+        popup=folium.Popup(
+            popup_html,
+            max_width=600
+        ),
+
+        icon=folium.Icon(
+            color=type_color
+        )
+
     ).add_to(walk_map)
 
 
