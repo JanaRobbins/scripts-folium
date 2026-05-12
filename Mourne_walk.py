@@ -184,7 +184,7 @@ plugins.MousePosition(position="topright", separator="  //  ", num_digits=5, pre
 # Measure control added - check your position during walk and how long do you have to walk to reach another destination.
 folium.plugins.MeasureControl(position='topleft', active_color='red', completed_color='red').add_to(map)
 
-# Control plugin to locate the user - check your position during the walk!!!
+# Control plugin to locate the user - check your position during the walk!!!!
 plugins.LocateControl().add_to(map)
 
 # Adding a floating image in HTML canvas on bottom left of the map with **kwargs - additional keyword argument as CSS properties – your logo can be here.
