@@ -405,9 +405,6 @@ folium.PolyLine(
 
 # 2. SECTION YOU DO NOT NEED TO CHANGE IN THE MAP
 
-# Latitude/longitude popups.
-walk_map.add_child(folium.LatLngPopup())
-
 # Remove the next # if you want to see the line for the walk animated.
 # plugins.AntPath(trail_coordinates).add_to(walk_map)
 
@@ -476,6 +473,41 @@ folium.plugins.Geocoder().add_to(walk_map)
 
 # Layer control.
 folium.LayerControl().add_to(walk_map)
+
+# Larger latitude/longitude popup when clicking anywhere on the map.
+# This does not change photo popups.
+
+map_name = walk_map.get_name()
+
+click_js = f"""
+<script>
+document.addEventListener("DOMContentLoaded", function() {{
+
+    {map_name}.on('click', function(e) {{
+
+        var lat = e.latlng.lat.toFixed(5);
+        var lng = e.latlng.lng.toFixed(5);
+
+        L.popup({{maxWidth: 350}})
+            .setLatLng(e.latlng)
+            .setContent(
+                '<div style="font-size:18px; font-weight:bold; width:260px;">' +
+                'Latitude: ' + lat + '<br>' +
+                'Longitude: ' + lng +
+                '</div>'
+            )
+            .openOn({map_name});
+    }});
+
+}});
+</script>
+"""
+
+walk_map.get_root().html.add_child(
+    folium.Element(click_js)
+)
+
+walk_map.save("walk.html")
 
 # Save the interactive map as an HTML file.
 walk_map.save("walk.html")
