@@ -147,17 +147,38 @@ folium.raster_layers.TileLayer(
 ).add_to(walk_map)
 
 
-# Iterate through list and add a marker for each peak,
-# colour-coded by its type.
+# PEAK MARKERS
+peaks_df = pd.read_csv("./data_files/peaks.csv")
+
+geometry = gpd.points_from_xy(
+    peaks_df.Longitude,
+    peaks_df.Latitude
+)
+
+geo_df = gpd.GeoDataFrame(
+    peaks_df[
+        ["Name", "Height",
+         "Irish_Grid",
+         "Latitude",
+         "Longitude",
+         "Type"]
+    ],
+    geometry=geometry
+)
+
+# Created a geometry list from the GeoDataFrame.
+geo_df_list = [
+    [point.xy[1][0], point.xy[0][0]]
+    for point in geo_df.geometry
+]
+
+# Iterate through list and add marker for each peak.
 for i, coordinates in enumerate(geo_df_list):
 
-    # Assign a colour marker for the type of peak,
-    # by the column ‘Type’.
     type_color = get_peak_colour(
         geo_df.Type[i]
     )
 
-    # Larger popup content for peaks.
     popup_html = f"""
     <div style="width:500px;">
 
@@ -393,11 +414,28 @@ walk_map.add_child(folium.LatLngPopup())
 # Add coordinates of mouse position on the top right.
 fmtr = "function(num) {return L.Util.formatNum(num, 4) + ' º ';};"
 
+# Add a field that shows the coordinates
+# of the mouse position on the top right.
+
+fmtr = """
+function(num) {
+return L.Util.formatNum(num, 4) + ' º ';
+};
+"""
+
 plugins.MousePosition(
     position="topright",
-    separator="  //  ",
-    num_digits=5,
-    prefix="<h3>Coordinates:</h3>",
+    separator=" | ",
+    empty_string="Move mouse over map",
+    num_digits=4,
+    prefix="""
+    <span style="
+    font-size:12px;
+    font-weight:bold;
+    ">
+    Coordinates:
+    </span>
+    """,
     lat_formatter=fmtr,
     lng_formatter=fmtr
 ).add_to(walk_map)
