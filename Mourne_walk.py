@@ -6,28 +6,10 @@ import pandas as pd
 import geopandas as gpd
 
 
-# FUNCTIONS USED IN THIS SCRIPT
-# These functions make the code shorter, easier to read and easier to change.
-# Instead of repeating the same marker, popup or GeoJSON code many times,
-# the function is written once and then reused later in the script.
-
-def create_popup_html(title, text="", image_path=None, alt_text="", image_width="500px"):
+def create_popup_html(title, text="", image_path=None, alt_text="", image_width="700px"):
     """
     Create HTML content for a Folium popup.
-
-    This function is used for popups that contain a title, description
-    and optional image. The image width can be changed to make popup
-    photos larger or smaller.
-
-    Parameters:
-    title (str): title displayed in the popup.
-    text (str): description displayed below the title.
-    image_path (str): path to the image displayed in the popup.
-    alt_text (str): alternative text for the image.
-    image_width (str): width of the image in the popup.
-
-    Returns:
-    str: HTML formatted popup content.
+    The image_width value controls how large photos appear when a marker is clicked.
     """
 
     image_html = ""
@@ -36,37 +18,27 @@ def create_popup_html(title, text="", image_path=None, alt_text="", image_width=
         image_html = f"""
         <p>
             <img src="{image_path}"
-                 style="width:{image_width}; max-width:100%;"
+                 style="width:{image_width}; max-width:100%; border-radius:10px;"
                  alt="{alt_text}">
         </p>
         """
 
     html = f"""
-    <h3>{title}</h3>
-    <h4>{text}</h4>
-    {image_html}
+    <div style="width:720px;">
+        <h3>{title}</h3>
+        <h4>{text}</h4>
+        {image_html}
+    </div>
     """
 
     return html
 
 
 def add_custom_marker(map_object, location, tooltip, popup_html,
-                      icon_path, icon_size=(50, 50), popup_width=600):
+                      icon_path, icon_size=(50, 50), popup_width=800):
     """
     Add a custom marker with popup and icon to the Folium map.
-
-    This function is used for start, finish and walk point markers.
-    It also allows the popup window to be larger, which is useful
-    when photos are displayed in the popup.
-
-    Parameters:
-    map_object: Folium map object.
-    location (list): latitude and longitude coordinates.
-    tooltip (str): text displayed when hovering over the marker.
-    popup_html (str): HTML content displayed when marker is clicked.
-    icon_path (str): path to the custom icon image.
-    icon_size (tuple): size of the custom icon.
-    popup_width (int): maximum width of the popup window.
+    popup_width controls the size of the popup window.
     """
 
     icon = folium.features.CustomIcon(icon_path, icon_size=icon_size)
@@ -81,16 +53,7 @@ def add_custom_marker(map_object, location, tooltip, popup_html,
 
 def get_peak_colour(peak_type):
     """
-    Return a marker colour based on the peak height category.
-
-    This function replaces the repeated if/elif code in the marker loop.
-    The colour is selected from the Type column in peaks.csv.
-
-    Parameters:
-    peak_type (str): peak height category.
-
-    Returns:
-    str: Folium marker colour.
+    Return marker colour based on the peak height category.
     """
 
     if peak_type == "580m-630m":
@@ -108,16 +71,6 @@ def get_peak_colour(peak_type):
 def add_geojson_layer(map_object, file_path, layer_name, style, tooltip_text):
     """
     Add a GeoJSON layer to the Folium map.
-
-    This function is used for the Mourne Wall and walking paths.
-    The style dictionary controls the colour, line weight and opacity.
-
-    Parameters:
-    map_object: Folium map object.
-    file_path (str): path to the GeoJSON file.
-    layer_name (str): name shown in the layer control.
-    style (dict): style settings for the GeoJSON layer.
-    tooltip_text (str): tooltip displayed when hovering over the layer.
     """
 
     folium.GeoJson(
@@ -132,18 +85,6 @@ def add_csv_icon_markers(map_object, csv_path, icon_path, tooltip,
                          name_column, extra_column=None, icon_size=(50, 50)):
     """
     Add markers to the map from a CSV file.
-
-    This function is useful when many points have the same type of marker,
-    for example parking locations or climbing locations.
-
-    Parameters:
-    map_object: Folium map object.
-    csv_path (str): path to the CSV file.
-    icon_path (str): path to the custom marker icon.
-    tooltip (str): tooltip displayed when hovering over markers.
-    name_column (str): CSV column used as popup title.
-    extra_column (str): optional extra CSV column displayed in popup.
-    icon_size (tuple): size of the custom icon.
     """
 
     df = pd.read_csv(csv_path)
@@ -205,15 +146,10 @@ folium.raster_layers.TileLayer(
     name="Stamen Watercolor"
 ).add_to(walk_map)
 
-# TODO: add other layers with an API key, such as Google, Bing or Thunderforest.
-
 
 # PEAK MARKERS
-# CSV file for the highest peaks in the area is added using pandas.
-# Change the file to use your own peak data.
 peaks_df = pd.read_csv("./data_files/peaks.csv")
 
-# Create point geometries using GeoPandas from Longitude and Latitude columns.
 geometry = gpd.points_from_xy(peaks_df.Longitude, peaks_df.Latitude)
 
 geo_df = gpd.GeoDataFrame(
@@ -223,14 +159,11 @@ geo_df = gpd.GeoDataFrame(
     geometry=geometry
 )
 
-# Create a geometry list from the GeoDataFrame.
 geo_df_list = [
     [point.xy[1][0], point.xy[0][0]]
     for point in geo_df.geometry
 ]
 
-# Iterate through the list and add a marker for each peak.
-# Markers are colour-coded by Type column.
 for i, coordinates in enumerate(geo_df_list):
 
     type_color = get_peak_colour(geo_df.Type[i])
@@ -252,8 +185,7 @@ for i, coordinates in enumerate(geo_df_list):
     ).add_to(walk_map)
 
 
-# Adding a legend for the peak markers as a floating picture.
-# The bottom and left values are percentages from the bottom-left corner.
+# Adding legends as floating images.
 plugins.FloatImage(
     "./images/legend_peaks.png",
     bottom="55",
@@ -261,7 +193,6 @@ plugins.FloatImage(
     width="200px"
 ).add_to(walk_map)
 
-# Adding a legend for the lines, polygons and GeoJSON files.
 plugins.FloatImage(
     "./images/legend_map.png",
     bottom="31",
@@ -270,8 +201,7 @@ plugins.FloatImage(
 ).add_to(walk_map)
 
 
-# Adding text to the map using absolute position.
-# DivIcon is used to place a text label directly onto the map.
+# Adding text to the map using DivIcon.
 folium.map.Marker(
     [54.2174, -5.8474],
     icon=DivIcon(
@@ -283,17 +213,14 @@ folium.map.Marker(
 
 
 # POINTS OF INTEREST ON THE WAY
-# Brandy Pad walk: Bloody Bridge Car Park to Meelmore Lodge.
 
 # No. 1 - Start point.
-# Custom popup marker for the start of the walk.
-# The popup contains text and a larger photo.
 html_start = create_popup_html(
     title="<strong>START OF THE WALK</strong>",
     text="Bloody Bridge Car Park",
     image_path="images/BloodyBridge.jpg",
     alt_text="Bloody Bridge car park",
-    image_width="500px"
+    image_width="700px"
 )
 
 add_custom_marker(
@@ -303,14 +230,11 @@ add_custom_marker(
     popup_html=html_start,
     icon_path="./images/Start.png",
     icon_size=(100, 60),
-    popup_width=650
+    popup_width=800
 )
 
 
 # Points of interest No. 2 to No. 6.
-# The data is read from popup26.csv.
-# The CSV file should contain latitude, longitude, title, text,
-# img_src and alt columns.
 marker_df = pd.read_csv("./data_files/popup26.csv")
 
 for _, row in marker_df.iterrows():
@@ -320,7 +244,7 @@ for _, row in marker_df.iterrows():
         text=row["text"],
         image_path=row["img_src"],
         alt_text=row["alt"],
-        image_width="500px"
+        image_width="700px"
     )
 
     add_custom_marker(
@@ -330,27 +254,25 @@ for _, row in marker_df.iterrows():
         popup_html=html,
         icon_path="./images/icon_green.png",
         icon_size=(30, 50),
-        popup_width=650
+        popup_width=800
     )
 
 
 # No. 7 - Finish point.
-# Adding URL to the marker popup.
-# This opens Meelmore Lodge website in a new browser window.
-# Text FINISH is displayed in HTML h2 and bold.
-# A photo is added into the popup and a PNG custom image is used for the icon.
 html_finish = """
-<a href="http://www.meelmorelodge.co.uk/" target="_blank">
-Visit Meelmore Lodge website
-</a>
-<br>
-<h2><strong>FINISH</strong></h2>
-<h3>Meelmore Lodge Hostel, campsite and parking</h3>
-<p>
-    <img src="images/MeelmoreLodge.jpg"
-         style="width:500px; max-width:100%;"
-         alt="Meelmore Lodge">
-</p>
+<div style="width:720px;">
+    <a href="http://www.meelmorelodge.co.uk/" target="_blank">
+    Visit Meelmore Lodge website
+    </a>
+    <br>
+    <h2><strong>FINISH</strong></h2>
+    <h3>Meelmore Lodge Hostel, campsite and parking</h3>
+    <p>
+        <img src="images/MeelmoreLodge.jpg"
+             style="width:700px; max-width:100%; border-radius:10px;"
+             alt="Meelmore Lodge">
+    </p>
+</div>
 """
 
 add_custom_marker(
@@ -360,15 +282,11 @@ add_custom_marker(
     popup_html=html_finish,
     icon_path="./images/Finish.png",
     icon_size=(100, 60),
-    popup_width=650
+    popup_width=800
 )
 
 
-# Importing CSV file cracks_heading.csv from the data_files folder.
-# Latitude and longitude are used as marker locations.
-# In popups, crack_name is used as the climbing location
-# and crack_faces is used as information about the crack face.
-# A custom PNG icon of a mountain is used.
+# CLIMBING AREAS
 cracks_df = pd.read_csv("./data_files/cracks_heading.csv")
 
 for _, row in cracks_df.iterrows():
@@ -389,9 +307,7 @@ for _, row in cracks_df.iterrows():
     )
 
 
-# Importing CSV file parking_all.csv from the data_files folder.
-# A custom PNG parking icon is used.
-# This section uses the add_csv_icon_markers function to avoid repeating code.
+# PARKING AREAS
 add_csv_icon_markers(
     map_object=walk_map,
     csv_path="./data_files/parking_all.csv",
@@ -402,9 +318,7 @@ add_csv_icon_markers(
 )
 
 
-# Mourne Wall GeoJSON polygon/line added from the data_files folder.
-# The style of the line is set to yellow.
-# The fill colour is set to none.
+# GEOJSON LAYERS
 wall_style = {
     "fillColor": "none",
     "color": "yellow",
@@ -421,8 +335,6 @@ add_geojson_layer(
 )
 
 
-# Mourne paths GeoJSON LineString added from the data_files folder.
-# The paths are styled as purple lines.
 paths_style = {
     "fillColor": "none",
     "color": "purple",
@@ -439,11 +351,7 @@ add_geojson_layer(
 )
 
 
-# Adding PolyLine to the project.
-# In this example, the PolyLine adds a walking trail to the map.
-# The tooltip shows the name of the trail when the mouse moves over it.
-# The colour is set to green.
-# Coordinates can be changed for any different walking route.
+# WALKING TRAIL
 trail_coordinates = [
     (54.174232, -5.873921),
     (54.170992, -5.912109),
@@ -466,16 +374,12 @@ folium.PolyLine(
 # 2. SECTION YOU DO NOT NEED TO CHANGE IN THE MAP
 
 # Latitude/longitude popups.
-# This helps users find a geolocation by clicking anywhere on the map.
 walk_map.add_child(folium.LatLngPopup())
-
 
 # Remove the next # if you want to see the line for the walk animated.
 # plugins.AntPath(trail_coordinates).add_to(walk_map)
 
-
-# Add a field that shows the coordinates of the mouse position
-# on the top right of the map.
+# Add coordinates of mouse position on the top right.
 fmtr = "function(num) {return L.Util.formatNum(num, 4) + ' º ';};"
 
 plugins.MousePosition(
@@ -487,25 +391,17 @@ plugins.MousePosition(
     lng_formatter=fmtr
 ).add_to(walk_map)
 
-
-# Measure control added.
-# This can be used to check distances during the walk
-# and estimate how far it is to another destination.
+# Measure control.
 folium.plugins.MeasureControl(
     position="topleft",
     active_color="red",
     completed_color="red"
 ).add_to(walk_map)
 
-
-# Control plugin to locate the user.
-# This can help users check their position during the walk.
+# Locate user.
 plugins.LocateControl().add_to(walk_map)
 
-
-# Adding a floating image in the HTML canvas on the bottom left of the map.
-# Additional keyword arguments are used as CSS properties.
-# A logo or project image can be displayed here.
+# Logo.
 plugins.FloatImage(
     "./images/j.png",
     bottom=6,
@@ -513,34 +409,24 @@ plugins.FloatImage(
     width="60px"
 ).add_to(walk_map)
 
-
-# Full screen button in the map.
+# Full screen button.
 plugins.Fullscreen(
     force_separate_button=True,
     title="Click here to see Full Screen"
 ).add_to(walk_map)
 
-
-# Adding MiniMap to the map.
-# This creates a small overview map in the bottom right corner.
-# The size has been changed from 300 x 300 to 150 x 150
-# to make the small map less intrusive.
+# Small MiniMap.
 plugins.MiniMap(
     width=150,
     height=150,
     position="bottomright"
 ).add_to(walk_map)
 
-
-# A search box is added to the map.
+# Search box.
 folium.plugins.Geocoder().add_to(walk_map)
 
-
-# Add layer control to show and hide different map layers.
+# Layer control.
 folium.LayerControl().add_to(walk_map)
 
-
 # Save the interactive map as an HTML file.
-# You can open walk.html from your folder at any time
-# and see the changes in a web browser.
 walk_map.save("walk.html")
