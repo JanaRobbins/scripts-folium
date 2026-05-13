@@ -218,30 +218,16 @@ for i, coordinates in enumerate(geo_df_list):
 
 
 # Adding legends as floating images.
-plugins.FloatImage(
-    "./images/legend_peaks.png",
-    bottom="55",
-    left="91",
-    width="200px"
-).add_to(walk_map)
+# remove the # if you want legend inside the map (i don't need it now as i am using
+# the map inside Mourne webside and legend is as separate image
 
-plugins.FloatImage(
-    "./images/legend_map.png",
-    bottom="31",
-    left="91",
-    width="200px"
-).add_to(walk_map)
+# plugins.FloatImage("./images/legend_peaks.png", bottom="55", left="80", width="200px").add_to(walk_map)
+# plugins.FloatImage( "./images/legend_map.png", bottom="31", left="91", width="200px").add_to(walk_map)
 
 
-# Adding text to the map using DivIcon.
-folium.map.Marker(
-    [54.2174, -5.8474],
-    icon=DivIcon(
-        icon_size=(250, 50),
-        icon_anchor=(0, 0),
-        html='<div style="font-size: 25pt">12 km charity walk</div>'
-    )
-).add_to(walk_map)
+# Adding text to the map using DivIcon. I don't need it now.
+# folium.map.Marker([54.2174, -5.8474], icon=DivIcon( icon_size=(250, 50), icon_anchor=(0, 0),
+    # html='<div style="font-size: 25pt">12 km charity walk</div>' ).add_to(walk_map)
 
 
 # POINTS OF INTEREST ON THE WAY

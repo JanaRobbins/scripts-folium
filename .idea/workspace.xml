@@ -91,4 +91,15 @@
     <MESSAGE value="creating the map with centre in the Mourne" />
     <option name="LAST_COMMIT_MESSAGE" value="creating the map with centre in the Mourne" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mourne_walk.py</url>
+          <line>229</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>
