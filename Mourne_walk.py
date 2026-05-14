@@ -388,6 +388,11 @@ folium.PolyLine(
     tooltip="<h3>Brandy Pad charity walk 12 km</h3>"
 ).add_to(walk_map)
 
+# Automatically zoom map to show
+# the whole walking trail.
+
+walk_map.fit_bounds(trail_coordinates)
+
 
 # 2. SECTION YOU DO NOT NEED TO CHANGE IN THE MAP
 
